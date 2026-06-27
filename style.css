@@ -1,0 +1,93 @@
+:root {
+    --bg-color: #0b0c10;
+    --card-bg: #1f2833;
+    --text-color: #c5c6c7;
+    --accent-color: #66fcf1; /* Кислотный неон */
+    --pure-white: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: rgba(11, 12, 16, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--pure-white);
+}
+
+.logo span { color: var(--accent-color); }
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com') no-repeat center/cover;
+}
+
+.hero h1 { font-size: 42px; color: var(--pure-white); margin-bottom: 10px; }
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 40px 5%;
+}
+
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 20px;
+    border: 1px solid #2e3c4d;
+}
+
+.product-card img { width: 100%; height: 200px; object-fit: cover; }
+.product-card h3 { color: var(--pure-white); margin: 15px 0 5px; }
+.product-card .price { color: var(--accent-color); font-weight: bold; font-size: 18px; }
+
+.btn-buy {
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-buy:hover { background: var(--accent-color); color: var(--bg-color); }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuneMee | Кастомные выхлопные системы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">TUNE<span>MEE</span></div>
+        <nav>
+            <a href="#catalog">Каталог</a>
+            <a href="#about">О нас</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Раскрой истинный голос своего мотора</h1>
+        <p>Проектирование и изготовление премиальных выхлопных систем из титана и нержавеющей стали.</p>
+        <a href="#catalog" class="btn">Смотреть каталог</a>
+    </section>
+
+    <main id="catalog">
+        <h2>Наши готовые решения</h2>
+        <div class="products-grid">
+            <!-- Карточка товара 1 -->
+            <div class="product-card">
+                <img src="https://unsplash.com" alt="Выхлоп BMW">
+                <h3>Выхлопная система для BMW M5 F90</h3>
+                <p class="price">от $2,500</p>
+                <button class="btn-buy" onclick="orderProduct('BMW M5 F90')">Заказать расчет</button>
+            </div>
+            <!-- Карточка товара 2 -->
+            <div class="product-card">
+                <img src="https://unsplash.com" alt="Выхлоп Mercedes">
+                <h3>Выхлопная система для AMG E63s</h3>
+                <p class="price">от $2,700</p>
+                <button class="btn-buy" onclick="orderProduct('AMG E63s')">Заказать расчет</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
