@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TuneMee — премиальные выхлопные системы для BMW M, Audi RS, Mercedes-AMG, Porsche. Титан и нержавейка. Аргоновая сварка." />
-  <title>TUNE MEE — Премиальные выхлопные системы</title>
+  <meta name="description" content="TuneMee — официальный партнёр be Solve System. Даунпайпы, глушители, катализаторы для BMW, Audi, Porsche, Lamborghini. Доставка СДЭК по России и СНГ." />
+  <meta name="keywords" content="даунпайп BMW, даунпайп Audi, даунпайп Porsche, глушитель нержавейка, титановый выхлоп, спортивный катализатор, be Solve System" />
+  <title>TuneMee — Выхлопные системы be Solve System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -15,256 +16,398 @@
   <!-- HEADER -->
   <header class="header" id="header">
     <div class="header__inner container">
-      <a href="#hero" class="logo">
-        TUNE <span class="logo__accent">MEE</span>
-      </a>
+      <a href="#hero" class="logo">TUNE<span class="accent">MEE</span></a>
       <nav class="nav" id="nav">
-        <a href="#configurator" class="nav__link">Конфигуратор</a>
-        <a href="#sound" class="nav__link">Звук</a>
-        <a href="#works" class="nav__link">Работы</a>
+        <a href="#catalog" class="nav__link">Каталог</a>
+        <a href="#mufflers" class="nav__link">Глушители</a>
+        <a href="#about" class="nav__link">О нас</a>
+        <a href="#delivery" class="nav__link">Доставка</a>
         <a href="#faq" class="nav__link">FAQ</a>
       </nav>
       <div class="header__actions">
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn-social btn-social--ig" aria-label="Instagram">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <circle cx="12" cy="12" r="4"></circle>
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
-          </svg>
-          <span>Instagram</span>
+        <a href="https://instagram.com/Dmitry_Mee" target="_blank" rel="noopener noreferrer" class="btn-social">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
         </a>
-        <a href="https://t.me/Dmitry_Mee" target="_blank" rel="noopener noreferrer" class="btn-social btn-social--tg" aria-label="Telegram">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
-          </svg>
-          <span>Telegram</span>
+        <a href="https://t.me/Dmitry_Mee" target="_blank" rel="noopener noreferrer" class="btn-social btn-social--tg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+          Telegram
         </a>
-        <button class="btn btn--outline" id="callbackBtn">Заказать звонок</button>
+        <button class="btn btn--primary" id="callbackBtn">Заказать звонок</button>
       </div>
-      <button class="burger" id="burger" aria-label="Открыть меню">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
       </button>
     </div>
   </header>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#catalog" class="mobile-nav__link">Каталог</a>
+    <a href="#mufflers" class="mobile-nav__link">Глушители</a>
+    <a href="#about" class="mobile-nav__link">О нас</a>
+    <a href="#delivery" class="mobile-nav__link">Доставка</a>
+    <a href="#faq" class="mobile-nav__link">FAQ</a>
+    <div class="mobile-nav__divider"></div>
+    <a href="https://instagram.com/Dmitry_Mee" target="_blank" rel="noopener noreferrer" class="btn-social">Instagram</a>
+    <a href="https://t.me/Dmitry_Mee" target="_blank" rel="noopener noreferrer" class="btn-social btn-social--tg">Telegram</a>
+    <button class="btn btn--primary btn--full" id="callbackBtnMobile">Заказать звонок</button>
+  </div>
 
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero__overlay"></div>
     <div class="hero__content container">
-      <p class="hero__eyebrow">be Solve System × TuneMee</p>
-      <h1 class="hero__title">РАСКРОЙ ИСТИННЫЙ<br /><span class="accent">ГОЛОС</span> СВОЕГО МОТОРА</h1>
-      <p class="hero__desc">Инженерные решения для тех, кто не идёт на компромисс. Титан. Аргон. Скорость.</p>
-      <a href="#configurator" class="btn btn--primary btn--lg hero__cta">Создать выхлоп</a>
-    </div>
-    <div class="hero__scroll-hint">
-      <span></span>
+      <p class="hero__eyebrow">Официальный партнёр be Solve System</p>
+      <h1 class="hero__title">ИНЖЕНЕРНЫЕ<br /><span class="accent">ВЫХЛОПНЫЕ</span><br />СИСТЕМЫ</h1>
+      <p class="hero__desc">Даунпайпы, глушители и катализаторы для BMW M, Audi RS, Porsche, Lamborghini Urus. Аргоновая сварка. Нержавейка и титан. Доставка СДЭК по России и СНГ.</p>
+      <div class="hero__btns">
+        <a href="#catalog" class="btn btn--primary btn--lg">Смотреть каталог</a>
+        <a href="https://t.me/Dmitry_Mee" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg">Написать в Telegram</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><span class="hero__stat-num">35+</span><span class="hero__stat-label">моделей авто</span></div>
+        <div class="hero__stat-divider"></div>
+        <div class="hero__stat"><span class="hero__stat-num">∞</span><span class="hero__stat-label">гарантия на швы</span></div>
+        <div class="hero__stat-divider"></div>
+        <div class="hero__stat"><span class="hero__stat-num">СДЭК</span><span class="hero__stat-label">доставка по СНГ</span></div>
+      </div>
     </div>
   </section>
 
-  <!-- CONFIGURATOR -->
-  <section class="section configurator" id="configurator">
+  <!-- BRANDS BAR -->
+  <div class="brands-bar">
+    <div class="container brands-bar__inner">
+      <span class="brands-bar__label">Совместимость:</span>
+      <div class="brands-bar__list">
+        <span class="brand-badge">BMW M</span>
+        <span class="brand-badge">Audi RS</span>
+        <span class="brand-badge">Porsche</span>
+        <span class="brand-badge">Lamborghini Urus</span>
+        <span class="brand-badge">Toyota GR</span>
+        <span class="brand-badge">Mercedes-AMG</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATALOG -->
+  <section class="section catalog" id="catalog">
     <div class="container">
       <div class="section__header">
-        <p class="section__eyebrow">Шаг 1 из 1</p>
-        <h2 class="section__title">Конфигуратор <span class="accent">стоимости</span></h2>
-        <p class="section__desc">Выберите параметры — цена пересчитывается мгновенно</p>
+        <p class="section__eyebrow">Каталог</p>
+        <h2 class="section__title">Даунпайпы и <span class="accent">катализаторы</span></h2>
+        <p class="section__desc">Выберите марку автомобиля для просмотра доступных позиций</p>
       </div>
-      <div class="configurator__grid">
-        <div class="configurator__controls">
-          <div class="form-group">
-            <label class="form-label" for="carBrand">Марка автомобиля</label>
+
+      <!-- FILTER TABS -->
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-brand="all">Все</button>
+        <button class="filter-tab" data-brand="BMW">BMW</button>
+        <button class="filter-tab" data-brand="Porsche">Porsche</button>
+        <button class="filter-tab" data-brand="Audi">Audi</button>
+        <button class="filter-tab" data-brand="Lamborghini">Lamborghini</button>
+        <button class="filter-tab" data-brand="Toyota">Toyota</button>
+      </div>
+
+      <!-- PRODUCTS GRID -->
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+  </section>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal modal--product">
+      <button class="modal__close" id="productModalClose" aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="product-modal__content" id="productModalContent"></div>
+    </div>
+  </div>
+
+  <!-- MUFFLERS CONFIGURATOR -->
+  <section class="section mufflers" id="mufflers">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Конфигуратор</p>
+        <h2 class="section__title">Глушители и <span class="accent">резонаторы</span></h2>
+        <p class="section__desc">Настройте параметры — стоимость рассчитается мгновенно. Все глушители из 100% нержавеющей стали 1 мм или титана.</p>
+      </div>
+      <div class="muffler-config">
+        <div class="muffler-config__controls">
+
+          <div class="config-group">
+            <label class="config-label">Форма корпуса</label>
+            <div class="shape-grid" id="shapeGrid">
+              <button class="shape-btn active" data-shape="round">
+                <span class="shape-btn__icon">○</span>
+                <span class="shape-btn__name">Круглый</span>
+              </button>
+              <button class="shape-btn" data-shape="oval">
+                <span class="shape-btn__icon">⬭</span>
+                <span class="shape-btn__name">Овальный</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="config-group" id="roundSizeGroup">
+            <label class="config-label">Диаметр корпуса</label>
             <div class="select-wrapper">
-              <select class="form-select" id="carBrand">
-                <option value="bmw">BMW M</option>
-                <option value="audi">Audi RS</option>
-                <option value="amg">Mercedes-AMG</option>
-                <option value="porsche">Porsche</option>
+              <select class="form-select" id="roundSize">
+                <option value="100">100 мм (усиленный 1.5мм)</option>
+                <option value="110">110 мм</option>
+                <option value="120">120 мм</option>
+                <option value="150">150 мм</option>
+                <option value="170">170 мм</option>
               </select>
             </div>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="material">Материал</label>
+
+          <div class="config-group hidden" id="ovalTypeGroup">
+            <label class="config-label">Тип овального глушителя</label>
             <div class="select-wrapper">
-              <select class="form-select" id="material">
-                <option value="steel">Нержавеющая сталь AISI 304</option>
-                <option value="titan">Премиум Титан Grade 1</option>
+              <select class="form-select" id="ovalType">
+                <option value="CC">C-C (вход-вход по центру)</option>
+                <option value="0I">0-I (вход с края — выход по центру)</option>
+                <option value="H">H (боковые входы)</option>
+                <option value="COFF">C-OFF (центр — с края)</option>
+                <option value="OFFOFF">OFF-OFF (оба с краёв)</option>
+                <option value="U">U (угловой)</option>
+                <option value="h">h (под управление, большая труба)</option>
+                <option value="F">F</option>
+                <option value="L">L (смещённый вход)</option>
+                <option value="X">X</option>
+                <option value="Y">Y</option>
+                <option value="T">T (смещённый вход)</option>
+                <option value="2F">2F (смещение по запросу)</option>
+                <option value="2L">2L (смещение по запросу)</option>
+                <option value="2U">2U</option>
+                <option value="T14">T 1-4 (управление громко-тихо)</option>
+                <option value="OFFIIcam">OFF-II cam (громко/средне-тихо)</option>
+                <option value="OFFII2cam">OFF-II 2cam (громко/тихо)</option>
               </select>
             </div>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="systemType">Тип системы</label>
+
+          <div class="config-group hidden" id="ovalSizeGroup">
+            <label class="config-label">Размер овала</label>
             <div class="select-wrapper">
-              <select class="form-select" id="systemType">
-                <option value="catback">Cat-back (от катализатора)</option>
-                <option value="full">Полная трасса с Downpipes</option>
+              <select class="form-select" id="ovalSize">
+                <option value="110x172">110×172 мм</option>
+                <option value="130x190">130×190 мм</option>
+                <option value="120x265">120×265 мм</option>
+                <option value="150x300">150×300 мм</option>
               </select>
             </div>
           </div>
-          <div class="form-group">
-            <label class="form-label" for="valves">Регулировка звука</label>
+
+          <div class="config-group">
+            <label class="config-label">Материал и исполнение</label>
             <div class="select-wrapper">
-              <select class="form-select" id="valves">
-                <option value="none">Без заслонок</option>
-                <option value="valves">С управляемыми заслонками</option>
+              <select class="form-select" id="mufflerMaterial">
+                <option value="steel_flow">Нержавейка — Прямоточный</option>
+                <option value="steel_chamber">Нержавейка — Камерный</option>
+                <option value="steel_res">Нержавейка — Резонатор</option>
+                <option value="steel_res_cam">Нержавейка — Резонатор камерный</option>
+                <option value="titan_flow">Титан — Прямоточный</option>
+                <option value="titan_chamber">Титан — Камерный</option>
               </select>
             </div>
           </div>
+
+          <div class="config-group" id="pipeGroup">
+            <label class="config-label">Диаметр трубы</label>
+            <div class="select-wrapper">
+              <select class="form-select" id="pipeDia">
+                <option value="52">52 мм</option>
+                <option value="60.3">60.3 мм</option>
+                <option value="63.5">63.5 мм</option>
+                <option value="70">70 мм</option>
+                <option value="76.1">76.1 мм</option>
+                <option value="88.9">88.9 мм</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="config-group">
+            <label class="config-label">Длина корпуса: <span class="accent" id="lengthVal">250</span> мм</label>
+            <input type="range" class="length-slider" id="lengthSlider" min="250" max="600" step="50" value="250" />
+            <div class="length-marks">
+              <span>250</span><span>350</span><span>450</span><span>600</span>
+            </div>
+          </div>
+
+          <div class="config-group">
+            <label class="config-label">Покрытие</label>
+            <div class="select-wrapper">
+              <select class="form-select" id="coating">
+                <option value="standard">Стандарт (полированная нержавейка)</option>
+                <option value="matte">Матовое покрытие</option>
+                <option value="satin">Сатинированное покрытие</option>
+              </select>
+            </div>
+          </div>
+
         </div>
-        <div class="configurator__result">
+
+        <div class="muffler-config__result">
           <div class="price-card">
-            <p class="price-card__label">Итоговая стоимость</p>
-            <div class="price-card__price" id="totalPrice">85 000 ₽</div>
-            <div class="price-card__breakdown" id="priceBreakdown">
+            <p class="price-card__label">Стоимость глушителя</p>
+            <div class="price-card__price" id="mufflerPrice">7 400 ₽</div>
+            <div class="price-card__breakdown">
               <div class="breakdown-item">
-                <span class="breakdown-item__name">Марка</span>
-                <span class="breakdown-item__val" id="b-brand">BMW M</span>
+                <span class="breakdown-item__name">Форма</span>
+                <span class="breakdown-item__val" id="b-shape">Круглый</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="breakdown-item__name">Размер</span>
+                <span class="breakdown-item__val" id="b-size">110 мм</span>
               </div>
               <div class="breakdown-item">
                 <span class="breakdown-item__name">Материал</span>
-                <span class="breakdown-item__val" id="b-material">AISI 304</span>
+                <span class="breakdown-item__val" id="b-mat">Нержавейка</span>
               </div>
               <div class="breakdown-item">
-                <span class="breakdown-item__name">Система</span>
-                <span class="breakdown-item__val" id="b-system">Cat-back</span>
+                <span class="breakdown-item__name">Исполнение</span>
+                <span class="breakdown-item__val" id="b-exec">Прямоточный</span>
               </div>
               <div class="breakdown-item">
-                <span class="breakdown-item__name">Заслонки</span>
-                <span class="breakdown-item__val" id="b-valves">Без заслонок</span>
+                <span class="breakdown-item__name">Длина</span>
+                <span class="breakdown-item__val" id="b-len">250 мм</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="breakdown-item__name">Труба</span>
+                <span class="breakdown-item__val" id="b-pipe">52 мм</span>
               </div>
             </div>
-            <p class="price-card__note">* Финальная цена уточняется после замера автомобиля</p>
-            <button class="btn btn--primary btn--full" id="orderBtn">
-              Обсудить в Telegram
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-left:8px;">
-                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
-              </svg>
-            </button>
+            <p class="price-card__note">* Цена уточняется при заказе. Возможность нанесения вашей эмблемы.</p>
+            <button class="btn btn--primary btn--full" id="mufflerOrderBtn">Заказать в Telegram</button>
+          </div>
+          <div class="muffler-info">
+            <div class="muffler-info__item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>100% нержавеющая сталь или титан</span>
+            </div>
+            <div class="muffler-info__item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Гарантия 2 года или 100 000 км</span>
+            </div>
+            <div class="muffler-info__item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Матовое или сатинированное покрытие</span>
+            </div>
+            <div class="muffler-info__item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Перфорация собственной разработки</span>
+            </div>
+            <div class="muffler-info__item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Нанесение эмблем по запросу</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SOUND -->
-  <section class="section sound" id="sound">
+  <!-- ABOUT -->
+  <section class="section about" id="about">
     <div class="container">
-      <div class="section__header">
-        <p class="section__eyebrow">Аудио</p>
-        <h2 class="section__title">Послушай <span class="accent">разницу</span></h2>
-        <p class="section__desc">Один и тот же мотор — два разных характера</p>
-      </div>
-      <div class="sound__grid">
-        <div class="sound-card sound-card--stock">
-          <div class="sound-card__icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <line x1="23" y1="9" x2="17" y2="15"></line>
-              <line x1="17" y1="9" x2="23" y2="15"></line>
-            </svg>
+      <div class="about__grid">
+        <div class="about__text">
+          <p class="section__eyebrow">О нас</p>
+          <h2 class="section__title" style="text-align:left;">Официальный партнёр<br /><span class="accent">be Solve System</span></h2>
+          <p class="about__desc">be Solve System — производитель инженерных решений для выхлопных систем из Екатеринбурга. Сертификат ISO 9001. Более 35 позиций под конкретные автомобили.</p>
+          <p class="about__desc">Мы — официальный партнёр, который помогает подобрать нужный компонент, оформить заказ и организовать доставку СДЭК от производителя напрямую к вам.</p>
+          <div class="about__features">
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <strong>Пожизненная гарантия на швы</strong>
+                <p>Аргоновая сварка в среде защитного газа</p>
+              </div>
+            </div>
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <strong>Срок изготовления 3–10 дней</strong>
+                <p>Каждая система под конкретный автомобиль</p>
+              </div>
+            </div>
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              </div>
+              <div>
+                <strong>Доставка СДЭК по России и СНГ</strong>
+                <p>Отправка от производителя, оплата при получении</p>
+              </div>
+            </div>
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div>
+                <strong>ISO 9001</strong>
+                <p>Сертифицированное производство</p>
+              </div>
+            </div>
           </div>
-          <h3 class="sound-card__title">Стоковый выхлоп</h3>
-          <p class="sound-card__desc">Серийная система без изменений. Глухо. Зажато. Без характера.</p>
-          <audio class="sound-card__player" controls preload="none">
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
-            Ваш браузер не поддерживает аудио.
-          </audio>
         </div>
-        <div class="sound-card sound-card--tunemee">
-          <div class="sound-card__badge">TuneMee</div>
-          <div class="sound-card__icon sound-card__icon--accent">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-            </svg>
+        <div class="about__image">
+          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80" alt="Производство выхлопных систем be Solve System" loading="lazy" />
+          <div class="about__image-badge">
+            <span class="about__image-badge-num">ISO</span>
+            <span class="about__image-badge-text">9001</span>
           </div>
-          <h3 class="sound-card__title">Система <span class="accent">TuneMee</span></h3>
-          <p class="sound-card__desc">Титановая трасса. Управляемые заслонки. Живой, мощный голос мотора.</p>
-          <audio class="sound-card__player" controls preload="none">
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg" />
-            Ваш браузер не поддерживает аудио.
-          </audio>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WORKS -->
-  <section class="section works" id="works">
+  <!-- DELIVERY -->
+  <section class="section delivery" id="delivery">
     <div class="container">
       <div class="section__header">
-        <p class="section__eyebrow">Портфолио</p>
-        <h2 class="section__title">Выполненные <span class="accent">работы</span></h2>
-        <p class="section__desc">Каждый проект — инженерное решение под конкретный автомобиль</p>
+        <p class="section__eyebrow">Логистика</p>
+        <h2 class="section__title">Доставка <span class="accent">СДЭК</span></h2>
+        <p class="section__desc">Производитель отправляет напрямую к вам. Оплата доставки при получении.</p>
       </div>
-      <div class="works__grid">
-        <div class="work-card">
-          <div class="work-card__img-wrap">
-            <img
-              src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80"
-              alt="BMW M5 F90 — титановая система TuneMee"
-              class="work-card__img"
-              loading="lazy"
-            />
-            <div class="work-card__overlay">
-              <span class="work-card__tag">Титан</span>
-            </div>
-          </div>
-          <div class="work-card__body">
-            <h3 class="work-card__title">BMW M5 F90</h3>
-            <p class="work-card__desc">Изготовление титанового X-Pipe и Cat-back системы. Снижение веса на 12 кг. Управляемые заслонки.</p>
-            <div class="work-card__meta">
-              <span class="work-card__material">Титан Grade 1</span>
-              <span class="work-card__dot"></span>
-              <span class="work-card__type">Полная трасса</span>
-            </div>
-          </div>
+      <div class="delivery__grid">
+        <div class="delivery-card">
+          <div class="delivery-card__num">01</div>
+          <h3 class="delivery-card__title">Оформите заказ</h3>
+          <p class="delivery-card__desc">Выберите позицию в каталоге или настройте глушитель в конфигураторе. Нажмите «Заказать в Telegram».</p>
         </div>
-        <div class="work-card">
-          <div class="work-card__img-wrap">
-            <img
-              src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80"
-              alt="Porsche 911 GT3 — выхлопная система TuneMee"
-              class="work-card__img"
-              loading="lazy"
-            />
-            <div class="work-card__overlay">
-              <span class="work-card__tag">Титан</span>
-            </div>
-          </div>
-          <div class="work-card__body">
-            <h3 class="work-card__title">Porsche 911 GT3</h3>
-            <p class="work-card__desc">Спортивная выхлопная трасса из титана. Аргоновая сварка. Сертифицированные фланцы. Прирост 18 л.с.</p>
-            <div class="work-card__meta">
-              <span class="work-card__material">Титан Grade 1</span>
-              <span class="work-card__dot"></span>
-              <span class="work-card__type">Cat-back</span>
-            </div>
-          </div>
+        <div class="delivery-card">
+          <div class="delivery-card__num">02</div>
+          <h3 class="delivery-card__title">Подтверждение</h3>
+          <p class="delivery-card__desc">Уточняем совместимость по VIN, подтверждаем срок изготовления и финальную стоимость.</p>
         </div>
-        <div class="work-card">
-          <div class="work-card__img-wrap">
-            <img
-              src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=80"
-              alt="Audi RS6 C8 — нержавеющая система TuneMee"
-              class="work-card__img"
-              loading="lazy"
-            />
-            <div class="work-card__overlay">
-              <span class="work-card__tag">AISI 304</span>
-            </div>
-          </div>
-          <div class="work-card__body">
-            <h3 class="work-card__title">Audi RS6 C8</h3>
-            <p class="work-card__desc">Downpipe с спортивным катализатором Евро 6. Резонатор и глушитель из нержавейки AISI 304. Stage 2.</p>
-            <div class="work-card__meta">
-              <span class="work-card__material">AISI 304</span>
-              <span class="work-card__dot"></span>
-              <span class="work-card__type">Downpipe + Cat-back</span>
-            </div>
-          </div>
+        <div class="delivery-card">
+          <div class="delivery-card__num">03</div>
+          <h3 class="delivery-card__title">Производство</h3>
+          <p class="delivery-card__desc">Изготовление 3–10 рабочих дней. Каждый компонент делается под ваш автомобиль.</p>
+        </div>
+        <div class="delivery-card">
+          <div class="delivery-card__num">04</div>
+          <h3 class="delivery-card__title">Отправка и трек</h3>
+          <p class="delivery-card__desc">Производитель отправляет СДЭК. Вы получаете трек-номер. Оплата доставки при получении.</p>
+        </div>
+      </div>
+      <div class="delivery__regions">
+        <p class="delivery__regions-title">Доставляем в:</p>
+        <div class="delivery__regions-list">
+          <span class="region-badge">🇷🇺 Россия</span>
+          <span class="region-badge">🇰🇿 Казахстан</span>
+          <span class="region-badge">🇧🇾 Беларусь</span>
+          <span class="region-badge">🇺🇿 Узбекистан</span>
+          <span class="region-badge">🇦🇲 Армения</span>
+          <span class="region-badge">🇦🇿 Азербайджан</span>
+          <span class="region-badge">🇬🇪 Грузия</span>
         </div>
       </div>
     </div>
@@ -279,57 +422,72 @@
       </div>
       <div class="faq__list">
         <div class="faq-item">
-          <button class="faq-item__question" aria-expanded="false">
-            <span>Какой материал лучше — нержавейка или титан?</span>
-            <svg class="faq-item__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+          <button class="faq-item__q" aria-expanded="false">
+            <span>Появится ли ошибка Check Engine после установки даунпайпа?</span>
+            <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-item__answer">
-            <p>Нержавеющая сталь AISI 304 — это надёжный выбор с оптимальным соотношением цена/качество. Она устойчива к коррозии, выдерживает высокие температуры и служит десятилетиями при правильной эксплуатации.</p>
-            <p>Титан Grade 1 — это другой уровень. Он легче стали на 40%, выдерживает экстремальные температуры и приобретает фирменный синий/радужный оттенок после прогрева. Это выбор для трек-дней и максимальной лёгкости автомобиля.</p>
+          <div class="faq-item__a">
+            <p>При установке даунпайпа без катализатора датчик кислорода фиксирует изменение состава выхлопа — появляется ошибка. Решения:</p>
+            <p><strong>Stage 2 прошивка ЭБУ</strong> — полностью убирает ошибку и раскрывает потенциал мотора. Рекомендуем.</p>
+            <p><strong>Электронные обманки лямбда-зонда</strong> — бюджетный вариант, эмулируют сигнал штатного катализатора.</p>
+            <p><strong>Спортивный катализатор Евро 6 Bioten/Emitec</strong> — ошибок нет, прирост есть, в рамках норм. Идеальный вариант.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-item__question" aria-expanded="false">
-            <span>Какая гарантия на сварные швы?</span>
-            <svg class="faq-item__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+          <button class="faq-item__q" aria-expanded="false">
+            <span>Какая гарантия на продукцию be Solve System?</span>
+            <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-item__answer">
-            <p>Пожизненная гарантия на все сварные швы. Мы используем исключительно аргоновую сварку в среде защитного газа — это исключает окисление металла в зоне шва, обеспечивая герметичность и прочность на весь срок службы автомобиля.</p>
-            <p>Если шов разойдётся по нашей вине — переварим бесплатно. Без вопросов, без сроков давности.</p>
+          <div class="faq-item__a">
+            <p><strong>Пожизненная гарантия на сварные швы</strong> даунпайпов и коллекторов — аргоновая сварка в среде защитного газа исключает окисление.</p>
+            <p><strong>Глушители и резонаторы:</strong> 2 года или 100 000 км пробега на первого владельца. Для авто с компрессором или двигателем более 4.5 л — 6 месяцев или 10 000 км.</p>
+            <p>В случае гарантийного случая — фото/видео подтверждение, замена в течение 15 рабочих дней.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-item__question" aria-expanded="false">
-            <span>Появится ли ошибка Check Engine после установки Downpipe?</span>
-            <svg class="faq-item__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+          <button class="faq-item__q" aria-expanded="false">
+            <span>Нержавейка AISI 304 или титан — что выбрать?</span>
+            <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-item__answer">
-            <p>При установке Downpipe без катализатора — да, датчик кислорода зафиксирует изменение состава выхлопа. Решений несколько:</p>
-            <p><strong>Stage 2 прошивка</strong> — перепрограммирование ЭБУ, полностью убирает ошибку и раскрывает потенциал мотора. Рекомендуем.</p>
-            <p><strong>Электронные обманки лямбда-зонда</strong> — более бюджетный вариант, устанавливаются на датчик и эмулируют сигнал штатного катализатора. Ошибка гасится программно.</p>
-            <p><strong>Спортивный катализатор Евро 6</strong> — самый чистый вариант: ошибок нет, прирост мощности есть, и всё остаётся в рамках норм.</p>
+          <div class="faq-item__a">
+            <p><strong>Нержавейка AISI 304</strong> — оптимальный выбор. Устойчива к коррозии и высоким температурам, служит десятилетиями. Подходит для большинства применений.</p>
+            <p><strong>Титан Grade 1</strong> — другой уровень. Легче стали на 40%, выдерживает экстремальные температуры, приобретает фирменный синий/радужный оттенок после прогрева. Выбор для трек-дней и максимальной лёгкости.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-item__question" aria-expanded="false">
-            <span>Как проходит процесс заказа и изготовления?</span>
-            <svg class="faq-item__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+          <button class="faq-item__q" aria-expanded="false">
+            <span>Как рассчитываются цены на глушители?</span>
+            <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-item__answer">
-            <p><strong>1. Конфигуратор:</strong> Выбираете параметры выше, получаете ориентировочную стоимость и пишете в Telegram.</p>
-            <p><strong>2. Замер:</strong> Уточняем все детали по вашему автомобилю (VIN, модификация, пожелания по звуку).</p>
-            <p><strong>3. Производство:</strong> Изготовление занимает от 3 до 10 рабочих дней в зависимости от сложности. Каждая система делается под конкретный автомобиль.</p>
-            <p><strong>4. Доставка:</strong> Отправка СДЭК по всей России и СНГ — оплата доставки при получении.</p>
+          <div class="faq-item__a">
+            <p>Цена глушителя зависит от типа, размера корпуса, материала, исполнения (прямоточный/камерный/резонатор) и длины. Базовая цена указана для минимальной длины. За каждые дополнительные 50 мм добавляется 700–800 ₽ в зависимости от типа.</p>
+            <p>Используйте конфигуратор выше для мгновенного расчёта. Финальная цена подтверждается при оформлении заказа в Telegram.</p>
           </div>
         </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">
+            <span>Спортивные катализаторы Bioten/Emitec — что это?</span>
+            <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-item__a">
+            <p>Bioten Neutralisators (Emitec) — российское производство, содержание драгоценных металлов 33 г/фут³. Применяются стандарты Евро 5+ (300cell) и Евро 6 (200cell).</p>
+            <p>Диаметры 113 мм, 120 мм и 130 мм — подбираются под конкретный даунпайп и автомобиль. При установке спортивного катализатора ошибка Check Engine не появляется.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container cta-section__inner">
+      <div class="cta-section__text">
+        <h2 class="cta-section__title">Готовы сделать заказ?</h2>
+        <p class="cta-section__desc">Напишите в Telegram — поможем подобрать компонент под ваш автомобиль, уточним совместимость по VIN и рассчитаем доставку.</p>
+      </div>
+      <div class="cta-section__btns">
+        <a href="https://t.me/Dmitry_Mee" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--lg">Написать в Telegram</a>
+        <button class="btn btn--outline btn--lg" id="callbackBtnCta">Заказать звонок</button>
       </div>
     </div>
   </section>
@@ -337,44 +495,56 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
-      <a href="#hero" class="logo footer__logo">
-        TUNE <span class="logo__accent">MEE</span>
-      </a>
-      <p class="footer__copy">© 2025 TuneMee. Инженерные выхлопные системы. Екатеринбург.</p>
-      <div class="footer__links">
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer__link">Instagram</a>
+      <div class="footer__brand">
+        <a href="#hero" class="logo footer__logo">TUNE<span class="accent">MEE</span></a>
+        <p class="footer__tagline">Официальный партнёр be Solve System</p>
+        <p class="footer__copy">© 2025 TuneMee. Екатеринбург.</p>
+      </div>
+      <div class="footer__nav">
+        <p class="footer__nav-title">Каталог</p>
+        <a href="#catalog" class="footer__link">Даунпайпы BMW</a>
+        <a href="#catalog" class="footer__link">Даунпайпы Porsche</a>
+        <a href="#catalog" class="footer__link">Даунпайпы Audi</a>
+        <a href="#catalog" class="footer__link">Lamborghini Urus</a>
+        <a href="#mufflers" class="footer__link">Глушители и резонаторы</a>
+      </div>
+      <div class="footer__nav">
+        <p class="footer__nav-title">Информация</p>
+        <a href="#about" class="footer__link">О нас</a>
+        <a href="#delivery" class="footer__link">Доставка</a>
+        <a href="#faq" class="footer__link">FAQ</a>
+      </div>
+      <div class="footer__nav">
+        <p class="footer__nav-title">Связь</p>
         <a href="https://t.me/Dmitry_Mee" target="_blank" rel="noopener noreferrer" class="footer__link">Telegram</a>
+        <a href="https://instagram.com/Dmitry_Mee" target="_blank" rel="noopener noreferrer" class="footer__link">Instagram</a>
       </div>
     </div>
   </footer>
 
-  <!-- MODAL -->
-  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <!-- CALLBACK MODAL -->
+  <div class="modal-overlay" id="callbackModal">
     <div class="modal">
-      <button class="modal__close" id="modalClose" aria-label="Закрыть">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
+      <button class="modal__close" id="callbackModalClose" aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
       <p class="modal__eyebrow">Обратный звонок</p>
-      <h2 class="modal__title" id="modalTitle">Перезвоним<br /><span class="accent">в течение часа</span></h2>
-      <p class="modal__desc">Оставьте имя и номер телефона или ник в Telegram — свяжемся и ответим на все вопросы.</p>
+      <h2 class="modal__title">Перезвоним<br /><span class="accent">в течение часа</span></h2>
+      <p class="modal__desc">Оставьте имя и контакт — поможем подобрать нужный компонент и оформить заказ.</p>
       <form class="modal__form" id="callbackForm" novalidate>
         <div class="form-group">
-          <label class="form-label" for="callbackName">Ваше имя</label>
-          <input class="form-input" type="text" id="callbackName" placeholder="Дмитрий" autocomplete="name" required />
+          <label class="form-label" for="cbName">Ваше имя</label>
+          <input class="form-input" type="text" id="cbName" placeholder="Дмитрий" required />
         </div>
         <div class="form-group">
-          <label class="form-label" for="callbackContact">Телефон или ник в Telegram</label>
-          <input class="form-input" type="text" id="callbackContact" placeholder="+7 900 000-00-00 или @nickname" required />
+          <label class="form-label" for="cbContact">Телефон или Telegram</label>
+          <input class="form-input" type="text" id="cbContact" placeholder="+7 900 000-00-00 или @username" required />
         </div>
-        <button type="submit" class="btn btn--primary btn--full">
-          Отправить в Telegram
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-left:8px;">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
-          </svg>
-        </button>
+        <div class="form-group">
+          <label class="form-label" for="cbCar">Ваш автомобиль (необязательно)</label>
+          <input class="form-input" type="text" id="cbCar" placeholder="BMW M5 F90, двигатель S63" />
+        </div>
+        <button type="submit" class="btn btn--primary btn--full">Отправить в Telegram</button>
       </form>
     </div>
   </div>
