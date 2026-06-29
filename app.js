@@ -692,315 +692,334 @@
 
     /* ==================== КОНФИГУРАТОР ГЛУШИТЕЛЕЙ ==================== */
 
-    var shapeGrid      = document.getElementById("shapeGrid");
-    var roundSizeGroup = document.getElementById("roundSizeGroup");
-    var ovalTypeGroup  = document.getElementById("ovalTypeGroup");
-    var ovalSizeGroup  = document.getElementById("ovalSizeGroup");
-    var roundSizeEl    = document.getElementById("roundSize");
-    var ovalTypeEl     = document.getElementById("ovalType");
-    var ovalSizeEl     = document.getElementById("ovalSize");
-    var materialEl     = document.getElementById("mufflerMaterial");
-    var pipeEl         = document.getElementById("pipeDia");
-    var sliderEl       = document.getElementById("lengthSlider");
-    var lengthValEl    = document.getElementById("lengthVal");
-    var mufflerPriceEl = document.getElementById("mufflerPrice");
-    var bShape  = document.getElementById("b-shape");
-    var bSize   = document.getElementById("b-size");
-    var bMat    = document.getElementById("b-mat");
-    var bExec   = document.getElementById("b-exec");
-    var bLen    = document.getElementById("b-len");
-    var bPipe   = document.getElementById("b-pipe");
-    var currentShape = "round";
-    var mufflerPreviewImg = null;
+var shapeGrid      = document.getElementById("shapeGrid");
+var roundSizeGroup = document.getElementById("roundSizeGroup");
+var ovalTypeGroup  = document.getElementById("ovalTypeGroup");
+var ovalSizeGroup  = document.getElementById("ovalSizeGroup");
+var roundSizeEl    = document.getElementById("roundSize");
+var ovalTypeEl     = document.getElementById("ovalType");
+var ovalSizeEl     = document.getElementById("ovalSize");
+var materialEl     = document.getElementById("mufflerMaterial");
+var pipeEl         = document.getElementById("pipeDia");
+var sliderEl       = document.getElementById("lengthSlider");
+var lengthValEl    = document.getElementById("lengthVal");
+var mufflerPriceEl = document.getElementById("mufflerPrice");
+var bShape  = document.getElementById("b-shape");
+var bSize   = document.getElementById("b-size");
+var bMat    = document.getElementById("b-mat");
+var bExec   = document.getElementById("b-exec");
+var bLen    = document.getElementById("b-len");
+var bPipe   = document.getElementById("b-pipe");
+var currentShape = "round";
+var mufflerPreviewImg = null;
 
-    // Превью изображения — вставляем первым в controls
-    var configControls = document.querySelector(".muffler-config__controls");
-    var previewWrap = document.createElement("div");
-    previewWrap.className = "muffler-preview";
-    previewWrap.innerHTML =
-        '<img src="images/muffler-round.jpg" alt="Глушитель"' +
-        ' class="muffler-preview__img" id="mufflerPreviewImg" />';
-    configControls.insertBefore(previewWrap, configControls.firstChild);
-    mufflerPreviewImg = document.getElementById("mufflerPreviewImg");
+// Превью изображения
+var configControls = document.querySelector(".muffler-config__controls");
+var previewWrap = document.createElement("div");
+previewWrap.className = "muffler-preview";
+previewWrap.innerHTML =
+    '<img src="images/muffler-round.jpg" alt="Глушитель"' +
+    ' class="muffler-preview__img" id="mufflerPreviewImg" />';
+configControls.insertBefore(previewWrap, configControls.firstChild);
+mufflerPreviewImg = document.getElementById("mufflerPreviewImg");
 
-    // Обновление меток ползунка
-    function updateLengthMarks(minLen) {
-        var marksEl = document.querySelector(".length-marks");
-        if (!marksEl) return;
-        var maxLen = 600;
-        var range  = maxLen - minLen;
-        var marks  = [
-            minLen,
-            minLen + Math.round(range * 0.25 / 50) * 50,
-            minLen + Math.round(range * 0.50 / 50) * 50,
-            minLen + Math.round(range * 0.75 / 50) * 50,
-            maxLen
-        ];
-        // Убираем дубли
-        marks = marks.filter(function (v, i, a) { return a.indexOf(v) === i; });
-        marksEl.innerHTML = marks.map(function (m) {
-            return "<span>" + m + "</span>";
-        }).join("");
+// Обновление меток ползунка
+function updateLengthMarks(minLen) {
+    var marksEl = document.querySelector(".length-marks");
+    if (!marksEl) return;
+    var maxLen = 600;
+    var range  = maxLen - minLen;
+    var marks  = [
+        minLen,
+        minLen + Math.round(range * 0.25 / 50) * 50,
+        minLen + Math.round(range * 0.50 / 50) * 50,
+        minLen + Math.round(range * 0.75 / 50) * 50,
+        maxLen
+    ];
+    marks = marks.filter(function (v, i, a) { return a.indexOf(v) === i; });
+    marksEl.innerHTML = marks.map(function (m) {
+        return "<span>" + m + "</span>";
+    }).join("");
+}
+
+// Обновление min/max ползунка
+function updateSliderMin() {
+    var typeKey   = currentShape === "round" ? "round" : ovalTypeEl.value;
+    var surcharge = LENGTH_SURCHARGE[typeKey] || { base: 250, step: 700 };
+    var minLen    = surcharge.base;
+
+    sliderEl.min = minLen;
+    sliderEl.max = 600;
+
+    var curVal = parseInt(sliderEl.value, 10);
+    if (isNaN(curVal) || curVal < minLen) {
+        sliderEl.value = minLen;
     }
+    lengthValEl.textContent = sliderEl.value;
+    updateLengthMarks(minLen);
+}
 
-    // Обновление min/max ползунка по типу
-    function updateSliderMin() {
-        var typeKey   = currentShape === "round" ? "round" : ovalTypeEl.value;
-        var surcharge = LENGTH_SURCHARGE[typeKey] || { base: 250, step: 700 };
-        var minLen    = surcharge.base;
+// Блокировка трубы 88.9
+function updatePipeOptions() {
+    var pipe88 = pipeEl.querySelector('option[value="88.9"]');
+    if (!pipe88) return;
+    var shouldDisable = currentShape === "oval" &&
+        NO_PIPE_88_TYPES.indexOf(ovalTypeEl.value) !== -1;
 
-        sliderEl.min = minLen;
-        sliderEl.max = 600;
+    pipe88.disabled    = shouldDisable;
+    pipe88.textContent = shouldDisable
+        ? "88.9 мм (недоступно для этого типа)"
+        : "88.9 мм";
 
-        var curVal = parseInt(sliderEl.value, 10);
-        if (isNaN(curVal) || curVal < minLen) {
-            sliderEl.value = minLen;
+    if (shouldDisable && pipeEl.value === "88.9") {
+        pipeEl.value = "76.1";
+    }
+}
+
+// Блокировка материалов
+function updateMaterialOptions() {
+    var type   = ovalTypeEl.value;
+    var isOval = currentShape === "oval";
+
+    var noRes = isOval && NO_RES_TYPES.indexOf(type) !== -1;
+    ["steel_res", "steel_res_cam"].forEach(function (val) {
+        var opt = materialEl.querySelector('option[value="' + val + '"]');
+        if (!opt) return;
+        opt.disabled = noRes;
+        if (noRes && materialEl.value === val) {
+            materialEl.value = "steel_flow";
         }
-        lengthValEl.textContent = sliderEl.value;
-        updateLengthMarks(minLen);
-    }
+    });
 
-    // Блокировка трубы 88.9 для запрещённых типов
-    function updatePipeOptions() {
-        var pipe88 = pipeEl.querySelector('option[value="88.9"]');
-        if (!pipe88) return;
-        var shouldDisable = currentShape === "oval" &&
-            NO_PIPE_88_TYPES.indexOf(ovalTypeEl.value) !== -1;
-
-        pipe88.disabled    = shouldDisable;
-        pipe88.textContent = shouldDisable
-            ? "88.9 мм (недоступно для этого типа)"
-            : "88.9 мм";
-
-        if (shouldDisable && pipeEl.value === "88.9") {
-            pipeEl.value = "76.1";
+    var noChamber = isOval && NO_CHAMBER_TYPES.indexOf(type) !== -1;
+    ["steel_chamber", "titan_chamber"].forEach(function (val) {
+        var opt = materialEl.querySelector('option[value="' + val + '"]');
+        if (!opt) return;
+        opt.disabled = noChamber;
+        if (noChamber && materialEl.value === val) {
+            materialEl.value = "steel_flow";
         }
+    });
+}
+
+// Обновление превью
+function updateMufflerPreview() {
+    var key = currentShape === "round" ? "round" : ovalTypeEl.value;
+    var src = MUFFLER_IMAGES[key] || "images/muffler-round.jpg";
+    if (mufflerPreviewImg && mufflerPreviewImg.getAttribute("src") !== src) {
+        mufflerPreviewImg.style.opacity = "0";
+        setTimeout(function () {
+            mufflerPreviewImg.src = src;
+            mufflerPreviewImg.style.opacity = "1";
+        }, 200);
+    }
+}
+
+// Обновление размеров овала
+function updateOvalSizes() {
+    var type = ovalTypeEl.value;
+    if (!type || !OVAL_PRICES[type]) {
+        var firstType = Object.keys(OVAL_PRICES)[0];
+        ovalTypeEl.value = firstType;
+        type = firstType;
+    }
+    var prices = OVAL_PRICES[type] || {};
+    var sizes  = Object.keys(prices);
+    var prevVal = ovalSizeEl.value;
+
+    ovalSizeEl.innerHTML = "";
+
+    if (sizes.length === 0) {
+        var emptyOpt = document.createElement("option");
+        emptyOpt.value = "";
+        emptyOpt.textContent = "Нет доступных размеров";
+        ovalSizeEl.appendChild(emptyOpt);
+        return;
     }
 
-    // Блокировка недоступных материалов
-    function updateMaterialOptions() {
-        var type   = ovalTypeEl.value;
-        var isOval = currentShape === "oval";
+    // Сортировка размеров
+    var sizeOrder = ["110x172", "130x190", "120x265", "150x300"];
+    sizes.sort(function(a, b) {
+        var indexA = sizeOrder.indexOf(a);
+        var indexB = sizeOrder.indexOf(b);
+        if (indexA === -1) indexA = 999;
+        if (indexB === -1) indexB = 999;
+        return indexA - indexB;
+    });
 
-        // Резонаторы
-        var noRes = isOval && NO_RES_TYPES.indexOf(type) !== -1;
-        ["steel_res", "steel_res_cam"].forEach(function (val) {
-            var opt = materialEl.querySelector('option[value="' + val + '"]');
-            if (!opt) return;
-            opt.disabled = noRes;
-            if (noRes && materialEl.value === val) {
-                materialEl.value = "steel_flow";
-            }
-        });
+    sizes.forEach(function (s) {
+        var opt = document.createElement("option");
+        opt.value = s;
+        opt.textContent = s.replace("x", "×") + " мм";
+        ovalSizeEl.appendChild(opt);
+    });
 
-        // Камерные для управляемых типов
-        var noChamber = isOval && NO_CHAMBER_TYPES.indexOf(type) !== -1;
-        ["steel_chamber", "titan_chamber"].forEach(function (val) {
-            var opt = materialEl.querySelector('option[value="' + val + '"]');
-            if (!opt) return;
-            opt.disabled = noChamber;
-            if (noChamber && materialEl.value === val) {
-                materialEl.value = "steel_flow";
-            }
-        });
+    // Дефолт: 120x265 если доступен
+    if (sizes.indexOf("120x265") !== -1) {
+        ovalSizeEl.value = "120x265";
+    } else if (sizes.indexOf(prevVal) !== -1) {
+        ovalSizeEl.value = prevVal;
+    } else {
+        ovalSizeEl.value = sizes[0];
+    }
+}
+
+// Метки материала
+function getMaterialLabel(val) {
+    var map = {
+        steel_flow:    ["Нержавейка", "Прямоточный"],
+        steel_chamber: ["Нержавейка", "Камерный"],
+        steel_res:     ["Нержавейка", "Резонатор"],
+        steel_res_cam: ["Нержавейка", "Резонатор камерный"],
+        titan_flow:    ["Титан",      "Прямоточный"],
+        titan_chamber: ["Титан",      "Камерный"]
+    };
+    return map[val] || ["—", "—"];
+}
+
+// Основной расчёт
+function calcMuffler() {
+    var mat    = materialEl.value;
+    var length = parseInt(sliderEl.value, 10);
+    if (isNaN(length)) length = parseInt(sliderEl.min, 10) || 200;
+
+    lengthValEl.textContent = length;
+    bLen.textContent  = length + " мм";
+    bPipe.textContent = pipeEl.value + " мм";
+
+    var basePrice  = 0;
+    var typeKey    = "round";
+    var isTitanium = mat.indexOf("titan") !== -1;
+
+    if (currentShape === "round") {
+        var size = roundSizeEl.value;
+        var row  = ROUND_PRICES[size];
+        basePrice = (row && row[mat] !== undefined && row[mat] !== null)
+            ? row[mat] : 0;
+        typeKey = "round";
+        bShape.textContent = "Круглый";
+        bSize.textContent  = size + " мм (диаметр)";
+    } else {
+        var ovalType = ovalTypeEl.value;
+        var ovalSize = ovalSizeEl.value;
+        var oData    = OVAL_PRICES[ovalType];
+        var oRow     = oData ? oData[ovalSize] : null;
+        basePrice    = (oRow && oRow[mat] !== undefined && oRow[mat] !== null)
+            ? oRow[mat] : 0;
+        typeKey = ovalType;
+        bShape.textContent = "Овальный " + ovalType;
+        bSize.textContent  = (ovalSize || "—").replace("x", "×") + " мм";
     }
 
-    // Обновление превью
-    function updateMufflerPreview() {
-        var key = currentShape === "round" ? "round" : ovalTypeEl.value;
-        var src = MUFFLER_IMAGES[key] || "images/muffler-round.jpg";
-        if (mufflerPreviewImg && mufflerPreviewImg.getAttribute("src") !== src) {
-            mufflerPreviewImg.style.opacity = "0";
-            setTimeout(function () {
-                mufflerPreviewImg.src = src;
-                mufflerPreviewImg.style.opacity = "1";
-            }, 200);
-        }
-    }
-
-    // Обновление доступных размеров овала
-    function updateOvalSizes() {
-        var type    = ovalTypeEl.value;
-        var prices  = OVAL_PRICES[type] || {};
-        var sizes   = Object.keys(prices);
-        var prevVal = ovalSizeEl.value;
-
-        ovalSizeEl.innerHTML = "";
-
-        if (sizes.length === 0) {
-            var emptyOpt = document.createElement("option");
-            emptyOpt.value = "";
-            emptyOpt.textContent = "Нет доступных размеров";
-            ovalSizeEl.appendChild(emptyOpt);
-        } else {
-            sizes.forEach(function (s) {
-                var opt = document.createElement("option");
-                opt.value = s;
-                opt.textContent = s.replace("x", "×") + " мм";
-                ovalSizeEl.appendChild(opt);
-            });
-            // Восстанавливаем предыдущий выбор если он доступен
-            if (sizes.indexOf(prevVal) !== -1) {
-                ovalSizeEl.value = prevVal;
-            }
-        }
-    }
-
-    // Метки материала
-    function getMaterialLabel(val) {
-        var map = {
-            steel_flow:    ["Нержавейка", "Прямоточный"],
-            steel_chamber: ["Нержавейка", "Камерный"],
-            steel_res:     ["Нержавейка", "Резонатор"],
-            steel_res_cam: ["Нержавейка", "Резонатор камерный"],
-            titan_flow:    ["Титан",      "Прямоточный"],
-            titan_chamber: ["Титан",      "Камерный"]
-        };
-        return map[val] || ["—", "—"];
-    }
-
-    // Основной расчёт цены
-    function calcMuffler() {
-        var mat    = materialEl.value;
-        var length = parseInt(sliderEl.value, 10);
-        if (isNaN(length)) length = parseInt(sliderEl.min, 10) || 200;
-
-        // Обновляем метки сразу, до проверки цены
-        lengthValEl.textContent = length;
-        bLen.textContent  = length + " мм";
-        bPipe.textContent = pipeEl.value + " мм";
-
-        var basePrice = 0;
-        var typeKey   = "round";
-
-        if (currentShape === "round") {
-            var size = roundSizeEl.value;
-            var row  = ROUND_PRICES[size];
-            basePrice = (row && row[mat] !== undefined && row[mat] !== null)
-                ? row[mat] : 0;
-            typeKey = "round";
-            bShape.textContent = "Круглый";
-            bSize.textContent  = size + " мм (диаметр)";
-        } else {
-            var ovalType = ovalTypeEl.value;
-            var ovalSize = ovalSizeEl.value;
-            var oData    = OVAL_PRICES[ovalType];
-            var oRow     = oData ? oData[ovalSize] : null;
-            basePrice    = (oRow && oRow[mat] !== undefined && oRow[mat] !== null)
-                ? oRow[mat] : 0;
-            typeKey = ovalType;
-            bShape.textContent = "Овальный " + ovalType;
-            bSize.textContent  = (ovalSize || "—").replace("x", "×") + " мм";
-        }
-
-        // Если цена недоступна
-        if (!basePrice) {
-            mufflerPriceEl.classList.add("flash");
-            setTimeout(function () {
-                mufflerPriceEl.textContent = "Уточнить";
-                mufflerPriceEl.classList.remove("flash");
-            }, 120);
-            return;
-        }
-
-        var surcharge  = LENGTH_SURCHARGE[typeKey] || { base: 200, step: 700 };
-        var extraSteps = Math.max(0, (length - surcharge.base) / 50);
-        var total      = basePrice + extraSteps * surcharge.step;
-        var matLabels  = getMaterialLabel(mat);
-
-        bMat.textContent  = matLabels[0];
-        bExec.textContent = matLabels[1];
-
+    if (!basePrice) {
         mufflerPriceEl.classList.add("flash");
         setTimeout(function () {
-            mufflerPriceEl.textContent = fmt(total);
+            mufflerPriceEl.textContent = "Уточнить";
             mufflerPriceEl.classList.remove("flash");
         }, 120);
+        return;
     }
 
-    // Слушатели формы конфигуратора
-    shapeGrid.addEventListener("click", function (e) {
-        var btn = e.target.closest(".shape-btn");
-        if (!btn) return;
-        qq(".shape-btn").forEach(function (b) { b.classList.remove("active"); });
-        btn.classList.add("active");
-        currentShape = btn.getAttribute("data-shape");
+    var surcharge  = LENGTH_SURCHARGE[typeKey] || { base: 200, step: 700 };
+    var extraSteps = Math.max(0, (length - surcharge.base) / 50);
+    
+    // Для титана шаг удваивается
+    var stepValue  = isTitanium ? surcharge.step * 2 : surcharge.step;
+    var total      = basePrice + extraSteps * stepValue;
+    var matLabels  = getMaterialLabel(mat);
 
-        if (currentShape === "round") {
-            roundSizeGroup.classList.remove("hidden");
-            ovalTypeGroup.classList.add("hidden");
-            ovalSizeGroup.classList.add("hidden");
-        } else {
-            roundSizeGroup.classList.add("hidden");
-            ovalTypeGroup.classList.remove("hidden");
-            ovalSizeGroup.classList.remove("hidden");
-        }
+    bMat.textContent  = matLabels[0];
+    bExec.textContent = matLabels[1];
 
-        updateOvalSizes();
-        updateSliderMin();
-        updatePipeOptions();
-        updateMaterialOptions();
-        updateMufflerPreview();
-        calcMuffler();
-    });
+    mufflerPriceEl.classList.add("flash");
+    setTimeout(function () {
+        mufflerPriceEl.textContent = fmt(total);
+        mufflerPriceEl.classList.remove("flash");
+    }, 120);
+}
 
-    ovalTypeEl.addEventListener("change", function () {
-        updateOvalSizes();
-        updateSliderMin();
-        updatePipeOptions();
-        updateMaterialOptions();
-        updateMufflerPreview();
-        calcMuffler();
-    });
+// Слушатели
+shapeGrid.addEventListener("click", function (e) {
+    var btn = e.target.closest(".shape-btn");
+    if (!btn) return;
+    qq(".shape-btn").forEach(function (b) { b.classList.remove("active"); });
+    btn.classList.add("active");
+    currentShape = btn.getAttribute("data-shape");
 
-    [roundSizeEl, ovalSizeEl, materialEl, pipeEl].forEach(function (el) {
-        el.addEventListener("change", calcMuffler);
-    });
+    if (currentShape === "round") {
+        roundSizeGroup.classList.remove("hidden");
+        ovalTypeGroup.classList.add("hidden");
+        ovalSizeGroup.classList.add("hidden");
+    } else {
+        roundSizeGroup.classList.add("hidden");
+        ovalTypeGroup.classList.remove("hidden");
+        ovalSizeGroup.classList.remove("hidden");
+    }
 
-    sliderEl.addEventListener("input", function () {
-        lengthValEl.textContent = sliderEl.value;
-        calcMuffler();
-    });
-
-    // Кнопка заказа глушителя
-    document.getElementById("mufflerOrderBtn").addEventListener("click", function () {
-        var mat       = materialEl.value;
-        var matLabels = getMaterialLabel(mat);
-        var length    = sliderEl.value;
-        var pipe      = pipeEl.value;
-        var shape     = currentShape === "round"
-            ? "Круглый " + roundSizeEl.value + " мм"
-            : "Овальный " + ovalTypeEl.value + " " +
-              (ovalSizeEl.value || "").replace("x", "×") + " мм";
-        var priceText  = mufflerPriceEl.textContent;
-        var coatingSel = document.getElementById("coating");
-        var coating    = coatingSel.options[coatingSel.selectedIndex].text;
-
-        var msg =
-            "Здравствуйте! Хочу заказать глушитель be Solve System.\n\n" +
-            "📦 Форма: "         + shape        + "\n" +
-            "🔩 Материал: "      + matLabels[0] + "\n" +
-            "⚙️ Исполнение: "   + matLabels[1] + "\n" +
-            "📏 Длина: "         + length       + " мм\n" +
-            "🔧 Диаметр трубы: " + pipe         + " мм\n" +
-            "✨ Покрытие: "      + coating      + "\n" +
-            "💰 Стоимость: "     + priceText    + "\n\n" +
-            "Прошу подтвердить наличие и сроки.";
-
-        window.open(
-            "https://t.me/Dmitry_Mee?text=" + encodeURIComponent(msg),
-            "_blank", "noopener,noreferrer"
-        );
-    });
-
-    // Инициализация конфигуратора
     updateOvalSizes();
     updateSliderMin();
     updatePipeOptions();
     updateMaterialOptions();
-    materialEl.value = "steel_flow";
+    updateMufflerPreview();
     calcMuffler();
+});
 
+ovalTypeEl.addEventListener("change", function () {
+    updateOvalSizes();
+    updateSliderMin();
+    updatePipeOptions();
+    updateMaterialOptions();
+    updateMufflerPreview();
+    calcMuffler();
+});
+
+[roundSizeEl, ovalSizeEl, materialEl, pipeEl].forEach(function (el) {
+    el.addEventListener("change", calcMuffler);
+});
+
+sliderEl.addEventListener("input", function () {
+    lengthValEl.textContent = sliderEl.value;
+    calcMuffler();
+});
+
+// Кнопка заказа
+document.getElementById("mufflerOrderBtn").addEventListener("click", function () {
+    var mat       = materialEl.value;
+    var matLabels = getMaterialLabel(mat);
+    var length    = sliderEl.value;
+    var pipe      = pipeEl.value;
+    var shape     = currentShape === "round"
+        ? "Круглый " + roundSizeEl.value + " мм"
+        : "Овальный " + ovalTypeEl.value + " " +
+          (ovalSizeEl.value || "").replace("x", "×") + " мм";
+    var priceText  = mufflerPriceEl.textContent;
+    var coatingSel = document.getElementById("coating");
+    var coating    = coatingSel.options[coatingSel.selectedIndex].text;
+
+    var msg =
+        "Здравствуйте! Хочу заказать глушитель be Solve System.\n\n" +
+        "📦 Форма: "         + shape        + "\n" +
+        "🔩 Материал: "      + matLabels[0] + "\n" +
+        "⚙️ Исполнение: "   + matLabels[1] + "\n" +
+        "📏 Длина: "         + length       + " мм\n" +
+        "🔧 Диаметр трубы: " + pipe         + " мм\n" +
+        "✨ Покрытие: "      + coating      + "\n" +
+        "💰 Стоимость: "     + priceText    + "\n\n" +
+        "Прошу подтвердить наличие и сроки.";
+
+    window.open(
+        "https://t.me/Dmitry_Mee?text=" + encodeURIComponent(msg),
+        "_blank", "noopener,noreferrer"
+    );
+});
+
+// Инициализация
+updateOvalSizes();        // дефолт: 120x265
+updateSliderMin();        // min=200
+updatePipeOptions();      // все трубы доступны
+updateMaterialOptions();  // все материалы доступны
+materialEl.value = "steel_flow"; // Нержавейка Прямоточный
+calcMuffler();
     /* ==================== FAQ ==================== */
 
     qq(".faq-item").forEach(function (item) {
