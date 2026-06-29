@@ -368,27 +368,7 @@
 
     /* ==================== ТАБЛИЦА ГЛУШИТЕЛЕЙ ==================== */
 
-    var MUFFLER_IMAGES = {
-        round:      "images/muffler-round.jpg",
-        CC:         "images/muffler-oval-cc.jpg",
-        "0I":       "images/muffler-oval-0i.jpg",
-        H:          "images/muffler-oval-ii.jpg",
-        COFF:       "images/muffler-oval-coff.jpg",
-        OFFOFF:     "images/muffler-oval-offoff.jpg",
-        U:          "images/muffler-oval-u.jpg",
-        h:          "images/muffler-oval-h-ctrl.jpg",
-        F:          "images/muffler-oval-f.jpg",
-        L:          "images/muffler-oval-l.jpg",
-        X:          "images/muffler-oval-x.jpg",
-        Y:          "images/muffler-oval-y.jpg",
-        T:          "images/muffler-oval-t.jpg",
-        "2F":       "images/muffler-oval-2f.jpg",
-        "2L":       "images/muffler-oval-2l.jpg",
-        "2U":       "images/muffler-oval-2u.jpg",
-        T14:        "images/muffler-oval-t14.jpg",
-        OFFIIcam:   "images/muffler-oval-offcam.jpg",
-        OFFII2cam:  "images/muffler-oval-off2cam.jpg"
-    };
+    var MUFFLER_IMAGES
 
     var ROUND_PRICES = {
         "100": { steel_flow: 6300,  steel_chamber: 8300,  steel_res: null,  steel_res_cam: null,  titan_flow: null,  titan_chamber: null  },
@@ -804,8 +784,29 @@ function updateMaterialOptions() {
 
 // Обновление превью
 function updateMufflerPreview() {
-    var key = currentShape === "round" ? "round" : ovalTypeEl.value;
-    var src = MUFFLER_IMAGES[key] || "images/muffler-round.jpg";
+    var mat = materialEl.value;
+    var baseKey = currentShape === "round" ? "round" : ovalTypeEl.value;
+    
+    // Определяем нужна ли камерная версия
+    var isChamber = (mat === "steel_chamber" || mat === "titan_chamber");
+    
+    // Формируем ключ для поиска изображения
+    var imageKey = isChamber ? baseKey + "_chamber" : baseKey;
+    
+    // Пробуем найти изображение с учётом камерности
+    var src = MUFFLER_IMAGES[imageKey];
+    
+    // Fallback: если камерного нет — используем прямоточный
+    if (!src && isChamber) {
+        src = MUFFLER_IMAGES[baseKey];
+    }
+    
+    // Финальный fallback на дефолтное изображение
+    if (!src) {
+        src = "images/muffler-round.jpg";
+    }
+    
+    // Обновляем превью с анимацией
     if (mufflerPreviewImg && mufflerPreviewImg.getAttribute("src") !== src) {
         mufflerPreviewImg.style.opacity = "0";
         setTimeout(function () {
@@ -973,8 +974,13 @@ ovalTypeEl.addEventListener("change", function () {
     calcMuffler();
 });
 
-[roundSizeEl, ovalSizeEl, materialEl, pipeEl].forEach(function (el) {
+[roundSizeEl, ovalSizeEl, pipeEl].forEach(function (el) {
     el.addEventListener("change", calcMuffler);
+});
+
+materialEl.addEventListener("change", function() {
+    updateMufflerPreview(); // ← обновляем превью при смене материала
+    calcMuffler();
 });
 
 sliderEl.addEventListener("input", function () {
