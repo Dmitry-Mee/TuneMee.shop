@@ -712,7 +712,7 @@
         // Овальные прямоточные
         CC: "images/muffler-oval-cc.jpg",
         "0I": "images/muffler-oval-0i.jpg",
-        II: "images/muffler-oval-ii.jpg",
+        "II": "images/muffler-oval-ii.jpg",
         COFF: "images/muffler-oval-coff.jpg",
         OFFOFF: "images/muffler-oval-offoff.jpg",
         U: "images/muffler-oval-u.jpg",
