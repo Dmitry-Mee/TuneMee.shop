@@ -670,7 +670,7 @@
         if (e.target === productModal) closeProductModal();
     });
 
-    /* ==================== КОНФИГУРАТОР ГЛУШИТЕЛЕЙ ==================== */
+/* ==================== КОНФИГУРАТОР ГЛУШИТЕЛЕЙ ==================== */
 
 var shapeGrid      = document.getElementById("shapeGrid");
 var roundSizeGroup = document.getElementById("roundSizeGroup");
@@ -702,6 +702,42 @@ previewWrap.innerHTML =
     ' class="muffler-preview__img" id="mufflerPreviewImg" />';
 configControls.insertBefore(previewWrap, configControls.firstChild);
 mufflerPreviewImg = document.getElementById("mufflerPreviewImg");
+
+// Карта изображений глушителей
+var MUFFLER_IMAGES = {
+    // Круглый
+    round: "images/muffler-round.jpg",
+    round_chamber: "images/muffler-round-chamber.jpg",
+
+    // Овальные прямоточные
+    CC: "images/muffler-oval-cc.jpg",
+    "0I": "images/muffler-oval-0i.jpg",
+    H: "images/muffler-oval-ii.jpg",
+    COFF: "images/muffler-oval-coff.jpg",
+    OFFOFF: "images/muffler-oval-offoff.jpg",
+    U: "images/muffler-oval-u.jpg",
+    h: "images/muffler-oval-h-ctrl.jpg",
+    F: "images/muffler-oval-f.jpg",
+    L: "images/muffler-oval-l.jpg",
+    X: "images/muffler-oval-x.jpg",
+    Y: "images/muffler-oval-y.jpg",
+    T: "images/muffler-oval-t.jpg",
+    "2F": "images/muffler-oval-2f.jpg",
+    "2L": "images/muffler-oval-2l.jpg",
+    "2U": "images/muffler-oval-2u.jpg",
+    T14: "images/muffler-oval-t14.jpg",
+    OFFIIcam: "images/muffler-oval-offcam.jpg",
+    OFFII2cam: "images/muffler-oval-off2cam.jpg",
+
+    // Овальные камерные (только те, что реально есть)
+    CC_chamber: "images/muffler-oval-cc-chamber.jpg",
+    H_chamber: "images/muffler-oval-ii-chamber.jpg",
+    COFF_chamber: "images/muffler-oval-coff-chamber.jpg",
+    OFFOFF_chamber: "images/muffler-oval-offoff-chamber.jpg",
+    U_chamber: "images/muffler-oval-u-chamber.jpg",
+    Y_chamber: "images/muffler-oval-y-chamber.jpg",
+    T_chamber: "images/muffler-oval-t-chamber.jpg"
+};
 
 // Обновление меток ползунка
 function updateLengthMarks(minLen) {
@@ -782,31 +818,31 @@ function updateMaterialOptions() {
     });
 }
 
-// Обновление превью
+// Обновление превью с fallback
 function updateMufflerPreview() {
     var mat = materialEl.value;
     var baseKey = currentShape === "round" ? "round" : ovalTypeEl.value;
     
-    // Определяем нужна ли камерная версия
+    // Камерный материал?
     var isChamber = (mat === "steel_chamber" || mat === "titan_chamber");
     
-    // Формируем ключ для поиска изображения
+    // Ключ для поиска
     var imageKey = isChamber ? baseKey + "_chamber" : baseKey;
     
-    // Пробуем найти изображение с учётом камерности
+    // Поиск изображения
     var src = MUFFLER_IMAGES[imageKey];
     
-    // Fallback: если камерного нет — используем прямоточный
+    // Fallback: нет камерного → берём прямоточный
     if (!src && isChamber) {
         src = MUFFLER_IMAGES[baseKey];
     }
     
-    // Финальный fallback на дефолтное изображение
+    // Финальный fallback
     if (!src) {
         src = "images/muffler-round.jpg";
     }
     
-    // Обновляем превью с анимацией
+    // Обновление с анимацией
     if (mufflerPreviewImg && mufflerPreviewImg.getAttribute("src") !== src) {
         mufflerPreviewImg.style.opacity = "0";
         setTimeout(function () {
@@ -978,8 +1014,9 @@ ovalTypeEl.addEventListener("change", function () {
     el.addEventListener("change", calcMuffler);
 });
 
+// Материал — обновляет и превью и расчёт
 materialEl.addEventListener("change", function() {
-    updateMufflerPreview(); // ← обновляем превью при смене материала
+    updateMufflerPreview();
     calcMuffler();
 });
 
@@ -1014,33 +1051,19 @@ document.getElementById("mufflerOrderBtn").addEventListener("click", function ()
         "Прошу подтвердить наличие и сроки.";
 
     window.open(
-        "https://t.me/Dmitry_Mee?text=" + encodeURIComponent(msg),
+        "https://t.me/TuneMeeShop?text=" + encodeURIComponent(msg),
         "_blank", "noopener,noreferrer"
     );
 });
 
 // Инициализация
 updateOvalSizes();        // дефолт: 120x265
-updateSliderMin();        // min=200
+updateSliderMin();        // min=200 для круглого
 updatePipeOptions();      // все трубы доступны
 updateMaterialOptions();  // все материалы доступны
 materialEl.value = "steel_flow"; // Нержавейка Прямоточный
+updateMufflerPreview();   // показываем превью
 calcMuffler();
-    /* ==================== FAQ ==================== */
-
-    qq(".faq-item").forEach(function (item) {
-        item.querySelector(".faq-item__q").addEventListener("click", function () {
-            var isOpen = item.classList.contains("open");
-            qq(".faq-item").forEach(function (i) {
-                i.classList.remove("open");
-                i.querySelector(".faq-item__q").setAttribute("aria-expanded", "false");
-            });
-            if (!isOpen) {
-                item.classList.add("open");
-                this.setAttribute("aria-expanded", "true");
-            }
-        });
-    });
 
     /* ==================== CALLBACK MODAL ==================== */
 
