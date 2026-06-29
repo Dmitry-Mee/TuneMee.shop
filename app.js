@@ -472,10 +472,11 @@
         OFFII2cam: "images/muffler-oval-off2cam.jpg"
     };
 
+    // Базовые цены из каталога (минимальная длина)
     var ROUND_PRICES = {
-        "100": { steel_flow: 6300, steel_chamber: 8300, steel_res: null, steel_res_cam: null, titan_flow: null, titan_chamber: null },
-        "110": { steel_flow: 7400, steel_chamber: 9400, steel_res: 7770, steel_res_cam: 9870, titan_flow: 14800, titan_chamber: 18800 },
-        "120": { steel_flow: 7400, steel_chamber: 9400, steel_res: 7770, steel_res_cam: 9870, titan_flow: 14800, titan_chamber: 18800 },
+        "100": { steel_flow: 6300, steel_chamber: 8300, steel_res: null,  steel_res_cam: null,  titan_flow: null,  titan_chamber: null  },
+        "110": { steel_flow: 7400, steel_chamber: 9400, steel_res: 7770,  steel_res_cam: 9870,  titan_flow: 14800, titan_chamber: 18800 },
+        "120": { steel_flow: 7400, steel_chamber: 9400, steel_res: 7770,  steel_res_cam: 9870,  titan_flow: 14800, titan_chamber: 18800 },
         "150": { steel_flow: 10000, steel_chamber: 12000, steel_res: 10500, steel_res_cam: 12600, titan_flow: 20000, titan_chamber: 24000 },
         "170": { steel_flow: 11300, steel_chamber: 13400, steel_res: 11865, steel_res_cam: 14070, titan_flow: 22600, titan_chamber: 26800 }
     };
@@ -564,43 +565,55 @@
             "150x300": { steel_flow: 32000, steel_chamber: 34000, titan_flow: 64000, titan_chamber: 68000, steel_res: null, steel_res_cam: null }
         },
         "OFFIIcam": {
-    "150x300": { steel_flow: 25000, steel_chamber: null, titan_flow: 50000, titan_chamber: null, steel_res: null, steel_res_cam: null },
-    "120x265": { steel_flow: 25000, steel_chamber: null, titan_flow: 50000, titan_chamber: null, steel_res: null, steel_res_cam: null },
-    "130x190": { steel_flow: 23800, steel_chamber: null, titan_flow: 47600, titan_chamber: null, steel_res: null, steel_res_cam: null }
-}
+            "150x300": { steel_flow: 25000, steel_chamber: null, titan_flow: 50000, titan_chamber: null, steel_res: null, steel_res_cam: null },
+            "120x265": { steel_flow: 25000, steel_chamber: null, titan_flow: 50000, titan_chamber: null, steel_res: null, steel_res_cam: null },
+            "130x190": { steel_flow: 23800, steel_chamber: null, titan_flow: 47600, titan_chamber: null, steel_res: null, steel_res_cam: null }
+        },
         "OFFII2cam": {
-            "130x190": { steel_flow: 24300, steel_chamber: null, titan_flow: 48600, titan_chamber: null, steel_res: null, steel_res_cam: null },
+            "150x300": { steel_flow: 25500, steel_chamber: null, titan_flow: 51000, titan_chamber: null, steel_res: null, steel_res_cam: null },
             "120x265": { steel_flow: 25500, steel_chamber: null, titan_flow: 51000, titan_chamber: null, steel_res: null, steel_res_cam: null },
-            "150x300": { steel_flow: 25500, steel_chamber: null, titan_flow: 51000, titan_chamber: null, steel_res: null, steel_res_cam: null }
+            "130x190": { steel_flow: 24300, steel_chamber: null, titan_flow: 48600, titan_chamber: null, steel_res: null, steel_res_cam: null }
         }
     };
 
+    // Минимальная длина и шаг доплаты по каталогу
     var LENGTH_SURCHARGE = {
-        round: { base: 200, step: 700 },
-        CC: { base: 250, step: 700 },
-        "0I": { base: 250, step: 700 },
-        H: { base: 250, step: 800 },
-        COFF: { base: 250, step: 700 },
-        OFFOFF: { base: 250, step: 700 },
-        U: { base: 250, step: 800 },
-        h: { base: 250, step: 700 },
-        F: { base: 250, step: 800 },
-        L: { base: 250, step: 700 },
-        X: { base: 300, step: 800 },
-        Y: { base: 250, step: 800 },
-        T: { base: 250, step: 700 },
-        "2F": { base: 400, step: 800 },
-        "2L": { base: 350, step: 700 },
-        "2U": { base: 350, step: 800 },
-        T14: { base: 300, step: 800 },
-        OFFIIcam: { base: 250, step: 800 },
-        OFFII2cam: { base: 350, step: 800 }
+        round:      { base: 200, step: 700 },
+        CC:         { base: 250, step: 700 },
+        "0I":       { base: 250, step: 700 },
+        H:          { base: 250, step: 800 },
+        COFF:       { base: 250, step: 700 },
+        OFFOFF:     { base: 250, step: 700 },
+        U:          { base: 250, step: 800 },
+        h:          { base: 250, step: 700 },
+        F:          { base: 250, step: 800 },
+        L:          { base: 250, step: 700 },
+        X:          { base: 300, step: 800 },
+        Y:          { base: 250, step: 800 },
+        T:          { base: 250, step: 700 },
+        "2F":       { base: 400, step: 800 },
+        "2L":       { base: 350, step: 700 },
+        "2U":       { base: 350, step: 800 },
+        T14:        { base: 300, step: 800 },
+        OFFIIcam:   { base: 250, step: 800 },
+        OFFII2cam:  { base: 350, step: 800 }
     };
+
+    // Типы у которых труба 88.9 запрещена
+    var NO_PIPE_88_TYPES = ["H", "F", "T14", "OFFIIcam", "OFFII2cam"];
+
+    // Типы у которых нет резонатора
+    var NO_RES_TYPES = ["U", "F", "L", "2F", "T", "2L", "2U", "T14", "OFFIIcam", "OFFII2cam"];
+
+    // Типы у которых нет камерного варианта для управляемых
+    var NO_CHAMBER_TYPES = ["OFFIIcam", "OFFII2cam"];
 
     /* ==================== УТИЛИТЫ ==================== */
 
-    function fmt(n) { return n.toLocaleString("ru-RU") + " ₽"; }
-    function q(sel) { return document.querySelector(sel); }
+    function fmt(n) {
+        return Math.round(n).toLocaleString("ru-RU") + " ₽";
+    }
+    function q(sel)  { return document.querySelector(sel); }
     function qq(sel) { return document.querySelectorAll(sel); }
 
     /* ==================== HEADER ==================== */
@@ -612,7 +625,7 @@
 
     /* ==================== BURGER ==================== */
 
-    var burger = document.getElementById("burger");
+    var burger    = document.getElementById("burger");
     var mobileNav = document.getElementById("mobileNav");
 
     burger.addEventListener("click", function () {
@@ -646,7 +659,8 @@
             var minPrice = p.prices[firstKey];
 
             var imgHtml = p.img
-                ? '<div class="product-card__img-wrap"><img src="' + p.img + '" alt="' + p.title + '" loading="lazy" class="product-card__img" /></div>'
+                ? '<div class="product-card__img-wrap"><img src="' + p.img +
+                  '" alt="' + p.title + '" loading="lazy" class="product-card__img" /></div>'
                 : "";
 
             var card = document.createElement("div");
@@ -655,27 +669,37 @@
             card.innerHTML =
                 imgHtml +
                 '<div class="product-card__body">' +
-                '<div class="product-card__header">' +
-                '<span class="product-card__brand">' + p.brand + '</span>' +
-                '<span class="product-card__type">' + p.type + '</span>' +
-                '</div>' +
-                '<h3 class="product-card__title">' + p.title + '</h3>' +
-                '<p class="product-card__compat">' + p.compat + '</p>' +
-                '<div class="product-card__prices">' +
-                '<div class="product-card__price-row">' +
-                '<span class="product-card__price-label">от</span>' +
-                '<span class="product-card__price-val">' + fmt(minPrice) + '</span>' +
-                '</div>' +
-                '</div>' +
-                '<div class="product-card__footer">' +
-                '<span class="product-card__detail">Все варианты →</span>' +
-                '<button class="btn btn--primary product-card__order">Заказать</button>' +
-                '</div>' +
+                  '<div class="product-card__header">' +
+                    '<span class="product-card__brand">' + p.brand + '</span>' +
+                    '<span class="product-card__type">'  + p.type  + '</span>' +
+                  '</div>' +
+                  '<h3 class="product-card__title">'  + p.title  + '</h3>' +
+                  '<p class="product-card__compat">'  + p.compat + '</p>' +
+                  '<div class="product-card__prices">' +
+                    '<div class="product-card__price-row">' +
+                      '<span class="product-card__price-label">от</span>' +
+                      '<span class="product-card__price-val">' + fmt(minPrice) + '</span>' +
+                    '</div>' +
+                  '</div>' +
+                  '<div class="product-card__footer">' +
+                    '<span class="product-card__detail">Все варианты →</span>' +
+                    '<button class="btn btn--primary product-card__order">Заказать</button>' +
+                  '</div>' +
                 '</div>';
 
             card.addEventListener("click", function () { openProductModal(p); });
             productsGrid.appendChild(card);
         });
+
+        // Перезапускаем анимации для новых карточек
+        if ("IntersectionObserver" in window) {
+            qq(".product-card").forEach(function (el) {
+                el.style.opacity = "0";
+                el.style.transform = "translateY(20px)";
+                el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                cardObserver.observe(el);
+            });
+        }
     }
 
     renderProducts("all");
@@ -690,13 +714,16 @@
 
     /* ==================== PRODUCT MODAL ==================== */
 
-    var productModal = document.getElementById("productModal");
+    var productModal        = document.getElementById("productModal");
     var productModalContent = document.getElementById("productModalContent");
 
     function openProductModal(p) {
         var rows = Object.keys(p.prices).map(function (key) {
-            var label = key === "base" ? "Стандарт (без кат.)" : (p.catLabel[key] || key);
-            return "<tr><td>" + label + "</td><td><span class='price-accent'>" + fmt(p.prices[key]) + "</span></td></tr>";
+            var label = key === "base"
+                ? "Стандарт (без кат.)"
+                : (p.catLabel[key] || key);
+            return "<tr><td>" + label + "</td><td><span class='price-accent'>" +
+                   fmt(p.prices[key]) + "</span></td></tr>";
         }).join("");
 
         var imgHtml = p.img
@@ -706,23 +733,32 @@
         productModalContent.innerHTML =
             imgHtml +
             '<span class="pm__brand">' + p.brand + " — " + p.type + "</span>" +
-            '<h2 class="pm__title">' + p.title + "</h2>" +
+            '<h2 class="pm__title">'   + p.title  + "</h2>" +
             '<p class="pm__compat">Совместимость: ' + p.compat + "</p>" +
             '<table class="pm__table">' +
-            '<thead><tr><th>Комплектация</th><th>Цена</th></tr></thead>' +
-            "<tbody>" + rows + "</tbody>" +
+              '<thead><tr><th>Комплектация</th><th>Цена</th></tr></thead>' +
+              "<tbody>" + rows + "</tbody>" +
             "</table>" +
             '<div class="pm__note">Цены без НДС (наличный расчёт). Уточните совместимость по VIN. Доставка СДЭК оплачивается отдельно.</div>' +
             '<div class="pm__btns">' +
-            '<button class="btn btn--primary pm-order-btn" data-title="' + encodeURIComponent(p.title) + '" data-compat="' + encodeURIComponent(p.compat) + '">Заказать в Telegram</button>' +
-            '<button class="btn btn--outline pm-close-btn">Закрыть</button>' +
+              '<button class="btn btn--primary pm-order-btn"' +
+                ' data-title="'  + encodeURIComponent(p.title)  + '"' +
+                ' data-compat="' + encodeURIComponent(p.compat) + '">' +
+                'Заказать в Telegram' +
+              '</button>' +
+              '<button class="btn btn--outline pm-close-btn">Закрыть</button>' +
             "</div>";
 
         productModalContent.querySelector(".pm-order-btn").addEventListener("click", function () {
-            var title = decodeURIComponent(this.getAttribute("data-title"));
+            var title  = decodeURIComponent(this.getAttribute("data-title"));
             var compat = decodeURIComponent(this.getAttribute("data-compat"));
-            var msg = "Здравствуйте! Интересует: " + title + "\n\nСовместимость: " + compat + "\n\nПрошу уточнить наличие, сроки и доступность.";
-            window.open("https://t.me/Dmitry_Mee?text=" + encodeURIComponent(msg), "_blank", "noopener,noreferrer");
+            var msg = "Здравствуйте! Интересует: " + title +
+                      "\n\nСовместимость: " + compat +
+                      "\n\nПрошу уточнить наличие, сроки и доступность.";
+            window.open(
+                "https://t.me/Dmitry_Mee?text=" + encodeURIComponent(msg),
+                "_blank", "noopener,noreferrer"
+            );
         });
 
         productModalContent.querySelector(".pm-close-btn").addEventListener("click", closeProductModal);
@@ -736,43 +772,129 @@
     }
 
     document.getElementById("productModalClose").addEventListener("click", closeProductModal);
-    productModal.addEventListener("click", function (e) { if (e.target === productModal) closeProductModal(); });
+    productModal.addEventListener("click", function (e) {
+        if (e.target === productModal) closeProductModal();
+    });
 
     /* ==================== КОНФИГУРАТОР ГЛУШИТЕЛЕЙ ==================== */
 
-    var shapeGrid = document.getElementById("shapeGrid");
+    var shapeGrid     = document.getElementById("shapeGrid");
     var roundSizeGroup = document.getElementById("roundSizeGroup");
-    var ovalTypeGroup = document.getElementById("ovalTypeGroup");
-    var ovalSizeGroup = document.getElementById("ovalSizeGroup");
-    var roundSizeEl = document.getElementById("roundSize");
-    var ovalTypeEl = document.getElementById("ovalType");
-    var ovalSizeEl = document.getElementById("ovalSize");
-    var materialEl = document.getElementById("mufflerMaterial");
-    var pipeEl = document.getElementById("pipeDia");
-    var sliderEl = document.getElementById("lengthSlider");
-    var lengthValEl = document.getElementById("lengthVal");
+    var ovalTypeGroup  = document.getElementById("ovalTypeGroup");
+    var ovalSizeGroup  = document.getElementById("ovalSizeGroup");
+    var roundSizeEl   = document.getElementById("roundSize");
+    var ovalTypeEl    = document.getElementById("ovalType");
+    var ovalSizeEl    = document.getElementById("ovalSize");
+    var materialEl    = document.getElementById("mufflerMaterial");
+    var pipeEl        = document.getElementById("pipeDia");
+    var sliderEl      = document.getElementById("lengthSlider");
+    var lengthValEl   = document.getElementById("lengthVal");
     var mufflerPriceEl = document.getElementById("mufflerPrice");
-    var bShape = document.getElementById("b-shape");
-    var bSize = document.getElementById("b-size");
-    var bMat = document.getElementById("b-mat");
-    var bExec = document.getElementById("b-exec");
-    var bLen = document.getElementById("b-len");
-    var bPipe = document.getElementById("b-pipe");
+    var bShape  = document.getElementById("b-shape");
+    var bSize   = document.getElementById("b-size");
+    var bMat    = document.getElementById("b-mat");
+    var bExec   = document.getElementById("b-exec");
+    var bLen    = document.getElementById("b-len");
+    var bPipe   = document.getElementById("b-pipe");
     var mufflerPreviewImg = null;
     var currentShape = "round";
 
-    // Создаём превью изображения в конфигураторе
+    // Превью изображения
     var configControls = document.querySelector(".muffler-config__controls");
     var previewWrap = document.createElement("div");
     previewWrap.className = "muffler-preview";
-    previewWrap.innerHTML = '<img src="images/muffler-round.jpg" alt="Глушитель" class="muffler-preview__img" id="mufflerPreviewImg" />';
+    previewWrap.innerHTML =
+        '<img src="images/muffler-round.jpg" alt="Глушитель"' +
+        ' class="muffler-preview__img" id="mufflerPreviewImg" />';
     configControls.insertBefore(previewWrap, configControls.firstChild);
     mufflerPreviewImg = document.getElementById("mufflerPreviewImg");
 
+    // Обновление метки длины под ползунком
+    function updateLengthMarks(minLen) {
+        var marksEl = document.querySelector(".length-marks");
+        if (!marksEl) return;
+        var maxLen = 600;
+        var range  = maxLen - minLen;
+        // 5 меток: minLen, +25%, +50%, +75%, maxLen
+        var marks  = [
+            minLen,
+            minLen + Math.round(range * 0.25 / 50) * 50,
+            minLen + Math.round(range * 0.50 / 50) * 50,
+            minLen + Math.round(range * 0.75 / 50) * 50,
+            maxLen
+        ];
+        // убираем дубли
+        marks = marks.filter(function (v, i, a) { return a.indexOf(v) === i; });
+        marksEl.innerHTML = marks.map(function (m) {
+            return "<span>" + m + "</span>";
+        }).join("");
+    }
+
+    // Обновление min слайдера при смене типа
+    function updateSliderMin() {
+        var typeKey = currentShape === "round" ? "round" : ovalTypeEl.value;
+        var surcharge = LENGTH_SURCHARGE[typeKey] || { base: 250, step: 700 };
+        var minLen = surcharge.base;
+
+        sliderEl.min = minLen;
+        sliderEl.max = 600;
+
+        var curVal = parseInt(sliderEl.value, 10);
+        if (isNaN(curVal) || curVal < minLen) {
+            sliderEl.value = minLen;
+        }
+        lengthValEl.textContent = sliderEl.value;
+        updateLengthMarks(minLen);
+    }
+
+    // Блокировка трубы 88.9 для запрещённых типов
+    function updatePipeOptions() {
+        var pipe88 = pipeEl.querySelector('option[value="88.9"]');
+        if (!pipe88) return;
+        var shouldDisable = currentShape === "oval" &&
+            NO_PIPE_88_TYPES.indexOf(ovalTypeEl.value) !== -1;
+
+        pipe88.disabled = shouldDisable;
+        pipe88.textContent = shouldDisable ? "88.9 мм (недоступно для этого типа)" : "88.9 мм";
+
+        if (shouldDisable && pipeEl.value === "88.9") {
+            pipeEl.value = "76.1";
+        }
+    }
+
+    // Блокировка недоступных материалов
+    function updateMaterialOptions() {
+        var type = ovalTypeEl.value;
+        var isOval = currentShape === "oval";
+
+        // steel_res / steel_res_cam
+        var noRes = isOval && NO_RES_TYPES.indexOf(type) !== -1;
+        ["steel_res", "steel_res_cam"].forEach(function (val) {
+            var opt = materialEl.querySelector('option[value="' + val + '"]');
+            if (!opt) return;
+            opt.disabled = noRes;
+            if (noRes && materialEl.value === val) {
+                materialEl.value = "steel_flow";
+            }
+        });
+
+        // steel_chamber / titan_chamber для управляемых типов
+        var noChamber = isOval && NO_CHAMBER_TYPES.indexOf(type) !== -1;
+        ["steel_chamber", "titan_chamber"].forEach(function (val) {
+            var opt = materialEl.querySelector('option[value="' + val + '"]');
+            if (!opt) return;
+            opt.disabled = noChamber;
+            if (noChamber && materialEl.value === val) {
+                materialEl.value = "steel_flow";
+            }
+        });
+    }
+
+    // Обновление превью
     function updateMufflerPreview() {
         var key = currentShape === "round" ? "round" : ovalTypeEl.value;
         var src = MUFFLER_IMAGES[key] || "images/muffler-round.jpg";
-        if (mufflerPreviewImg && mufflerPreviewImg.src !== src) {
+        if (mufflerPreviewImg && mufflerPreviewImg.getAttribute("src") !== src) {
             mufflerPreviewImg.style.opacity = "0";
             setTimeout(function () {
                 mufflerPreviewImg.src = src;
@@ -781,56 +903,15 @@
         }
     }
 
-    function updateSliderMin() {
-    if (currentShape === "round") {
-        sliderEl.min = 200;
-        return;
-    }
-    var type = ovalTypeEl.value;
-    var surcharge = LENGTH_SURCHARGE[type] || { base: 250, step: 700 };
-    var minLen = surcharge.base;
-    sliderEl.min = minLen;
-    if (parseInt(sliderEl.value, 10) < minLen) {
-        sliderEl.value = minLen;
-        lengthValEl.textContent = minLen;
-    }
-    // Обновляем метки
-    updateLengthMarks(minLen);
-}
-
-function updateLengthMarks(minLen) {
-    var marksEl = document.querySelector(".length-marks");
-    if (!marksEl) return;
-    var step = Math.round((600 - minLen) / 4);
-    var marks = [];
-    for (var i = 0; i < 4; i++) {
-        marks.push(minLen + step * i);
-    }
-    marks.push(600);
-    marksEl.innerHTML = marks.map(function(m) {
-        return "<span>" + m + "</span>";
-    }).join("");
-}
-
-ovalTypeEl.addEventListener("change", function () {
-    updateOvalSizes();
-    updateSliderMin(); // ← добавить
-    updateMufflerPreview();
-    calcMuffler();
-});
-
+    // Обновление доступных размеров овала
     function updateOvalSizes() {
-        var type = ovalTypeEl.value;
-        if (!type || !OVAL_PRICES[type]) {
-            var firstType = Object.keys(OVAL_PRICES)[0];
-            if (firstType && ovalTypeEl.value !== firstType) {
-                ovalTypeEl.value = firstType;
-                type = firstType;
-            }
-        }
+        var type   = ovalTypeEl.value;
         var prices = OVAL_PRICES[type] || {};
-        var sizes = Object.keys(prices);
+        var sizes  = Object.keys(prices);
+        var prevVal = ovalSizeEl.value;
+
         ovalSizeEl.innerHTML = "";
+
         if (sizes.length === 0) {
             var opt = document.createElement("option");
             opt.value = "";
@@ -843,77 +924,119 @@ ovalTypeEl.addEventListener("change", function () {
                 opt.textContent = s.replace("x", "×") + " мм";
                 ovalSizeEl.appendChild(opt);
             });
+            // Восстанавливаем предыдущий выбор если он доступен
+            if (sizes.indexOf(prevVal) !== -1) {
+                ovalSizeEl.value = prevVal;
+            }
         }
     }
 
+    // Метки материала для сводки
     function getMaterialLabel(val) {
         var map = {
-            steel_flow: ["Нержавейка", "Прямоточный"],
+            steel_flow:    ["Нержавейка", "Прямоточный"],
             steel_chamber: ["Нержавейка", "Камерный"],
-            steel_res: ["Нержавейка", "Резонатор"],
+            steel_res:     ["Нержавейка", "Резонатор"],
             steel_res_cam: ["Нержавейка", "Резонатор камерный"],
-            titan_flow: ["Титан", "Прямоточный"],
-            titan_chamber: ["Титан", "Камерный"]
+            titan_flow:    ["Титан",      "Прямоточный"],
+            titan_chamber: ["Титан",      "Камерный"]
         };
         return map[val] || ["—", "—"];
     }
 
+    // Основной расчёт
     function calcMuffler() {
-        var mat = materialEl.value;
+        var mat    = materialEl.value;
         var length = parseInt(sliderEl.value, 10);
+        if (isNaN(length)) length = parseInt(sliderEl.min, 10) || 200;
+
+        // Обновляем метку длины сразу
+        lengthValEl.textContent = length;
+        bLen.textContent  = length + " мм";
+        bPipe.textContent = pipeEl.value + " мм";
+
         var basePrice = 0;
-        var typeKey = "round";
-        var isTitanium = mat.indexOf("titan") !== -1;
+        var typeKey   = "round";
 
         if (currentShape === "round") {
             var size = roundSizeEl.value;
-            var row = ROUND_PRICES[size];
-            basePrice = row ? (row[mat] || 0) : 0;
-            typeKey = "round";
-            bSize.textContent = size + " мм (диаметр)";
+            var row  = ROUND_PRICES[size];
+            basePrice = (row && row[mat] !== undefined) ? row[mat] : 0;
+            typeKey   = "round";
             bShape.textContent = "Круглый";
+            bSize.textContent  = size + " мм (диаметр)";
         } else {
             var ovalType = ovalTypeEl.value;
             var ovalSize = ovalSizeEl.value;
-            var oRow = OVAL_PRICES[ovalType] ? OVAL_PRICES[ovalType][ovalSize] : null;
-            basePrice = oRow ? (oRow[mat] || 0) : 0;
-            typeKey = ovalType;
+            var oData    = OVAL_PRICES[ovalType];
+            var oRow     = oData ? oData[ovalSize] : null;
+            basePrice    = (oRow && oRow[mat] !== undefined) ? oRow[mat] : 0;
+            typeKey      = ovalType;
             bShape.textContent = "Овальный " + ovalType;
-            bSize.textContent = (ovalSize || "—").replace("x", "×") + " мм";
+            bSize.textContent  = (ovalSize || "—").replace("x", "×") + " мм";
         }
 
-        // Если цена null, показываем "Уточнить"
-        if (basePrice === null || basePrice === 0) {
+        // Если цена null или 0 — показываем "Уточнить"
+        if (!basePrice) {
             mufflerPriceEl.classList.add("flash");
             setTimeout(function () {
                 mufflerPriceEl.textContent = "Уточнить";
                 mufflerPriceEl.classList.remove("flash");
             }, 120);
-            return { total: 0, mat: mat, length: length, matLabels: getMaterialLabel(mat) };
+            return;
         }
 
-        var surcharge = LENGTH_SURCHARGE[typeKey] || { base: 200, step: 700 };
+        var surcharge  = LENGTH_SURCHARGE[typeKey] || { base: 200, step: 700 };
         var extraSteps = Math.max(0, (length - surcharge.base) / 50);
-        
-        // Для титана шаг увеличивается в 2 раза
-        var stepValue = isTitanium ? surcharge.step * 2 : surcharge.step;
-        var total = basePrice + extraSteps * stepValue;
-        var matLabels = getMaterialLabel(mat);
 
-        bMat.textContent = matLabels[0];
+        // Шаг одинаков для нержавейки и титана — цены уже разные в таблице
+        var total      = basePrice + extraSteps * surcharge.step;
+        var matLabels  = getMaterialLabel(mat);
+
+        bMat.textContent  = matLabels[0];
         bExec.textContent = matLabels[1];
-        bLen.textContent = length + " мм";
-        bPipe.textContent = pipeEl.value + " мм";
-        lengthValEl.textContent = length;
 
         mufflerPriceEl.classList.add("flash");
         setTimeout(function () {
             mufflerPriceEl.textContent = fmt(total);
             mufflerPriceEl.classList.remove("flash");
         }, 120);
-
-        return { total: total, mat: mat, length: length, matLabels: matLabels };
     }
+
+    // Слушатели конфигуратора
+    shapeGrid.addEventListener("click", function (e) {
+        var btn = e.target.closest(".shape-btn");
+        if (!btn) return;
+        qq(".shape-btn").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        currentShape = btn.getAttribute("data-shape");
+
+        if (currentShape === "round") {
+            roundSizeGroup.classList.remove("hidden");
+            ovalTypeGroup.classList.add("hidden");
+            ovalSizeGroup.classList.add("hidden");
+        } else {
+            roundSizeGroup.classList.add("hidden");
+            ovalTypeGroup.classList.remove("hidden");
+            ovalSizeGroup.classList.remove("hidden");
+        }
+
+        updateOvalSizes();
+        updateSliderMin();
+        updatePipeOptions();
+        updateMaterialOptions();
+        updateMufflerPreview();
+        calcMuffler();
+    });
+
+    ovalTypeEl.addEventListener("change", function () {
+        updateOvalSizes();
+        updateSliderMin();
+        updatePipeOptions();
+        updateMaterialOptions();
+        updateMufflerPreview();
+        calcMuffler();
+    });
 
     [roundSizeEl, ovalSizeEl, materialEl, pipeEl].forEach(function (el) {
         el.addEventListener("change", calcMuffler);
@@ -924,33 +1047,44 @@ ovalTypeEl.addEventListener("change", function () {
         calcMuffler();
     });
 
-    // Инициализация: устанавливаем размеры овала, выбираем резонатор по умолчанию и делаем первый расчёт
-    updateOvalSizes();
-    materialEl.value = "steel_flow";
-    calcMuffler();
-
+    // Кнопка заказа глушителя
     document.getElementById("mufflerOrderBtn").addEventListener("click", function () {
-        var mat = materialEl.value;
+        var mat       = materialEl.value;
         var matLabels = getMaterialLabel(mat);
-        var length = sliderEl.value;
-        var pipe = pipeEl.value;
-        var shape = currentShape === "round"
-            ? "Круглый " + roundSizeEl.value + "мм"
-            : "Овальный " + ovalTypeEl.value + " " + (ovalSizeEl.value || "").replace("x", "×") + "мм";
+        var length    = sliderEl.value;
+        var pipe      = pipeEl.value;
+        var shape     = currentShape === "round"
+            ? "Круглый " + roundSizeEl.value + " мм"
+            : "Овальный " + ovalTypeEl.value + " " +
+              (ovalSizeEl.value || "").replace("x", "×") + " мм";
         var priceText = mufflerPriceEl.textContent;
-        var coating = q("#coating").options[q("#coating").selectedIndex].text;
+        var coatingSel = document.getElementById("coating");
+        var coating   = coatingSel.options[coatingSel.selectedIndex].text;
+
         var msg =
             "Здравствуйте! Хочу заказать глушитель be Solve System.\n\n" +
-            "📦 Форма: " + shape + "\n" +
-            "🔩 Материал: " + matLabels[0] + "\n" +
-            "⚙️ Исполнение: " + matLabels[1] + "\n" +
-            "📏 Длина: " + length + " мм\n" +
-            "🔧 Диаметр трубы: " + pipe + " мм\n" +
-            "✨ Покрытие: " + coating + "\n" +
-            "💰 Стоимость: " + priceText + "\n\n" +
+            "📦 Форма: "           + shape          + "\n" +
+            "🔩 Материал: "        + matLabels[0]   + "\n" +
+            "⚙️ Исполнение: "     + matLabels[1]   + "\n" +
+            "📏 Длина: "           + length         + " мм\n" +
+            "🔧 Диаметр трубы: "   + pipe           + " мм\n" +
+            "✨ Покрытие: "        + coating        + "\n" +
+            "💰 Стоимость: "       + priceText      + "\n\n" +
             "Прошу подтвердить наличие и сроки.";
-        window.open("https://t.me/Dmitry_Mee?text=" + encodeURIComponent(msg), "_blank", "noopener,noreferrer");
+
+        window.open(
+            "https://t.me/Dmitry_Mee?text=" + encodeURIComponent(msg),
+            "_blank", "noopener,noreferrer"
+        );
     });
+
+    // Инициализация конфигуратора
+    updateOvalSizes();
+    updateSliderMin();
+    updatePipeOptions();
+    updateMaterialOptions();
+    materialEl.value = "steel_flow"; // дефолт: нержавейка прямоточный
+    calcMuffler();
 
     /* ==================== FAQ ==================== */
 
@@ -971,7 +1105,7 @@ ovalTypeEl.addEventListener("change", function () {
     /* ==================== CALLBACK MODAL ==================== */
 
     var callbackModal = document.getElementById("callbackModal");
-    var callbackForm = document.getElementById("callbackForm");
+    var callbackForm  = document.getElementById("callbackForm");
 
     function openCallback() {
         callbackModal.classList.add("open");
@@ -997,51 +1131,70 @@ ovalTypeEl.addEventListener("change", function () {
     });
 
     document.getElementById("callbackModalClose").addEventListener("click", closeCallback);
-    callbackModal.addEventListener("click", function (e) { if (e.target === callbackModal) closeCallback(); });
+    callbackModal.addEventListener("click", function (e) {
+        if (e.target === callbackModal) closeCallback();
+    });
 
     document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") { closeCallback(); closeProductModal(); }
+        if (e.key === "Escape") {
+            closeCallback();
+            closeProductModal();
+        }
     });
 
     callbackForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        var name = document.getElementById("cbName").value.trim();
+        var name    = document.getElementById("cbName").value.trim();
         var contact = document.getElementById("cbContact").value.trim();
-        var car = document.getElementById("cbCar").value.trim();
+        var car     = document.getElementById("cbCar").value.trim();
+
+        document.getElementById("cbName").style.borderColor    = "";
+        document.getElementById("cbContact").style.borderColor = "";
+
         if (!name || !contact) {
-            if (!name) document.getElementById("cbName").style.borderColor = "#ff4d6d";
+            if (!name)    document.getElementById("cbName").style.borderColor    = "#ff4d6d";
             if (!contact) document.getElementById("cbContact").style.borderColor = "#ff4d6d";
             return;
         }
-        document.getElementById("cbName").style.borderColor = "";
-        document.getElementById("cbContact").style.borderColor = "";
+
         var msg =
             "Заявка на обратный звонок — TuneMee\n\n" +
-            "👤 Имя: " + name + "\n" +
-            "📞 Контакт: " + contact +
+            "👤 Имя: "      + name    + "\n" +
+            "📞 Контакт: "  + contact +
             (car ? "\n🚗 Автомобиль: " + car : "");
-        window.open("https://t.me/Dmitry_Mee?text=" + encodeURIComponent(msg), "_blank", "noopener,noreferrer");
+
+        window.open(
+            "https://t.me/Dmitry_Mee?text=" + encodeURIComponent(msg),
+            "_blank", "noopener,noreferrer"
+        );
         callbackForm.reset();
         closeCallback();
     });
 
     /* ==================== SCROLL ANIMATIONS ==================== */
 
-    var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.08, rootMargin: "0px 0px -20px 0px" });
+    var cardObserver;
 
-    qq(".delivery-card, .about__feature, .faq-item, .region-badge, .product-card").forEach(function (el) {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(20px)";
-        el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-        observer.observe(el);
-    });
+    if ("IntersectionObserver" in window) {
+        var observerOptions = { threshold: 0.08, rootMargin: "0px 0px -20px 0px" };
+
+        cardObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity   = "1";
+                    entry.target.style.transform = "translateY(0)";
+                    cardObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        qq(".delivery-card, .about__feature, .faq-item, .region-badge, .product-card")
+            .forEach(function (el) {
+                el.style.opacity   = "0";
+                el.style.transform = "translateY(20px)";
+                el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                cardObserver.observe(el);
+            });
+    }
 
 })();
