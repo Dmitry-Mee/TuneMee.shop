@@ -477,7 +477,7 @@
         round: { base: 200, step: 700 },
         CC: { base: 250, step: 700 },
         "0I": { base: 250, step: 700 },
-        H: { base: 250, step: 800 },
+        II: { base: 250, step: 800 },
         COFF: { base: 250, step: 700 },
         OFFOFF: { base: 250, step: 700 },
         U: { base: 250, step: 800 },
@@ -712,7 +712,7 @@
         // Овальные прямоточные
         CC: "images/muffler-oval-cc.jpg",
         "0I": "images/muffler-oval-0i.jpg",
-        H: "images/muffler-oval-ii.jpg",
+        II: "images/muffler-oval-ii.jpg",
         COFF: "images/muffler-oval-coff.jpg",
         OFFOFF: "images/muffler-oval-offoff.jpg",
         U: "images/muffler-oval-u.jpg",
@@ -731,7 +731,7 @@
 
         // Овальные камерные (только те, что реально есть)
         CC_chamber: "images/muffler-oval-cc-chamber.jpg",
-        H_chamber: "images/muffler-oval-ii-chamber.jpg",
+        II_chamber: "images/muffler-oval-ii-chamber.jpg",
         COFF_chamber: "images/muffler-oval-coff-chamber.jpg",
         OFFOFF_chamber: "images/muffler-oval-offoff-chamber.jpg",
         U_chamber: "images/muffler-oval-u-chamber.jpg",
