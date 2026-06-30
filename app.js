@@ -736,7 +736,8 @@
         OFFOFF_chamber: "images/muffler-oval-offoff-chamber.jpg",
         U_chamber: "images/muffler-oval-u-chamber.jpg",
         Y_chamber: "images/muffler-oval-y-chamber.jpg",
-        T_chamber: "images/muffler-oval-t-chamber.jpg"
+        T_chamber: "images/muffler-oval-t-chamber.jpg",
+        F_chamber: "images/muffler-oval-f-chamber.jpg"
     };
 
     // Обновление меток ползунка
