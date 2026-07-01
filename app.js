@@ -371,7 +371,7 @@
     var MUFFLER_IMAGES
 
     var ROUND_PRICES = {
-        "100": { steel_flow: 6300, steel_chamber: 8300, steel_res: null, steel_res_cam: null, titan_flow: null, titan_chamber: null },
+        "100": { steel_flow: null, steel_chamber: null, steel_res: 6300, steel_res_cam: 8300, titan_flow: null, titan_chamber: null },
         "110": { steel_flow: 7400, steel_chamber: 9400, steel_res: 7770, steel_res_cam: 9870, titan_flow: 14800, titan_chamber: 18800 },
         "120": { steel_flow: 7400, steel_chamber: 9400, steel_res: 7770, steel_res_cam: 9870, titan_flow: 14800, titan_chamber: 18800 },
         "150": { steel_flow: 10000, steel_chamber: 12000, steel_res: 10500, steel_res_cam: 12600, titan_flow: 20000, titan_chamber: 24000 },
